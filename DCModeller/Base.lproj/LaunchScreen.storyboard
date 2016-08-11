@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="ujS-iS-tRO">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="cii-cF-vkR">
+            <objects>
+                <viewController id="ujS-iS-tRO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jYy-la-JtW"/>
+                        <viewControllerLayoutGuide type="bottom" id="IkW-3W-28X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iuY-Dh-H1d">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="reportCover_noLogo" translatesAutoresizingMaskIntoConstraints="NO" id="LOr-hs-OcC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LOr-hs-OcC" firstAttribute="leading" secondItem="iuY-Dh-H1d" secondAttribute="leading" id="bBW-2l-WKe"/>
+                            <constraint firstItem="LOr-hs-OcC" firstAttribute="bottom" secondItem="iuY-Dh-H1d" secondAttribute="bottomMargin" id="dg7-At-tcZ"/>
+                            <constraint firstItem="LOr-hs-OcC" firstAttribute="top" secondItem="iuY-Dh-H1d" secondAttribute="topMargin" id="fu9-34-1dX"/>
+                            <constraint firstAttribute="trailing" secondItem="LOr-hs-OcC" secondAttribute="trailing" id="yma-V3-0kX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VLS-vv-8Of" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="318"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="reportCover_noLogo" width="826" height="1169"/>
+    </resources>
+</document>

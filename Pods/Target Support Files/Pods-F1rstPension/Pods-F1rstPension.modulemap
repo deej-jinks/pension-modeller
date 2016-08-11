@@ -1,0 +1,6 @@
+framework module Pods_F1rstPension {
+  umbrella header "Pods-F1rstPension-umbrella.h"
+
+  export *
+  module * { export * }
+}

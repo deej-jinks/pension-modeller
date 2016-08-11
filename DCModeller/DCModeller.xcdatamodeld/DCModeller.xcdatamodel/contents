@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="AnnuitySet" representedClassName=".AnnuitySet" syncable="YES">
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jlIncAnnuity" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="jlNonIncAnnuity" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lifeExpectancyFromRetirement" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="retirementAge" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="slIncAnnuity" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="slNonIncAnnuity" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="yearOfBirth" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="DCPension" representedClassName=".DCPension" syncable="YES">
+        <attribute name="annuitySpouseProportion" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="cashProportion" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="currentFundValue" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="employerContributionRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="incomeInflationaryIncreases" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="initialDrawdownIncome" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="investmentReturnInDrawdown" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="investmentReturnsPreRetirement" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="memberContributionRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selectedRetirementAge" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="totalContributionRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="dcPension" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="acceptedTsCs" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="dateOfBirth" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isMale" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priceInflation" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="salary" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="salaryInflation" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="dcPension" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DCPension" inverseName="user" inverseEntity="DCPension" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AnnuitySet" positionX="-63" positionY="90" width="128" height="165"/>
+        <element name="DCPension" positionX="-54" positionY="18" width="128" height="240"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="165"/>
+    </elements>
+</model>

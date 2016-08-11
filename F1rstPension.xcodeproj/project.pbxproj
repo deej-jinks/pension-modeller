@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		37052A2E1CEE0D6B00D5B3AE /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052A2D1CEE0D6B00D5B3AE /* LoginScreenViewController.swift */; };
+		37052A301CEE0DE100D5B3AE /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052A2F1CEE0DE100D5B3AE /* CheckBox.swift */; };
+		370D0EA11CEE46C7005EA33B /* fasterNumberEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 370D0E9F1CEE46C7005EA33B /* fasterNumberEmitter.sks */; };
+		372E10081CE8F2EF00D0F65E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372E10071CE8F2EF00D0F65E /* AppDelegate.swift */; };
+		372E100D1CE8F2EF00D0F65E /* DCModeller.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372E100B1CE8F2EF00D0F65E /* DCModeller.storyboard */; };
+		372E10101CE8F2EF00D0F65E /* DCModeller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 372E100E1CE8F2EF00D0F65E /* DCModeller.xcdatamodeld */; };
+		372E10121CE8F2EF00D0F65E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 372E10111CE8F2EF00D0F65E /* Assets.xcassets */; };
+		372E10151CE8F2EF00D0F65E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372E10131CE8F2EF00D0F65E /* LaunchScreen.storyboard */; };
+		372E10201CE8F3FE00D0F65E /* NotUsedDCPension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372E101F1CE8F3FE00D0F65E /* NotUsedDCPension.swift */; };
+		372E102A1CE90B9600D0F65E /* BuildUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372E10291CE90B9600D0F65E /* BuildUpViewController.swift */; };
+		372E102E1CE9235400D0F65E /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372E102D1CE9235400D0F65E /* Functions.swift */; };
+		3735298E1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735298C1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift */; };
+		3735298F1D5CD2A6008648E6 /* DCPension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735298D1D5CD2A6008648E6 /* DCPension.swift */; };
+		373988BB1D09863200102BEC /* NewContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373988BA1D09863200102BEC /* NewContributionsViewController.swift */; };
+		3763A30C1CFAE36F0048A0C6 /* CustomCombinedChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763A30B1CFAE36F0048A0C6 /* CustomCombinedChartView.swift */; };
+		3763A3121CFB7C010048A0C6 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763A3111CFB7C010048A0C6 /* User+CoreDataProperties.swift */; };
+		3777D2CD1CF054B60019717A /* NumberSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2CC1CF054B60019717A /* NumberSelectionViewController.swift */; };
+		3777D2D21CF0616C0019717A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2D11CF0616C0019717A /* Strings.swift */; };
+		3777D2D41CF0679B0019717A /* ContRateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2D31CF0679B0019717A /* ContRateSelectionViewController.swift */; };
+		3777D2D61CF068C10019717A /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2D51CF068C10019717A /* Globals.swift */; };
+		3777D2D81CF0E8540019717A /* GenderSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2D71CF0E8540019717A /* GenderSelectionViewController.swift */; };
+		3777D2DE1CF4C18A0019717A /* annutiyTable.json in Resources */ = {isa = PBXBuildFile; fileRef = 3777D2DD1CF4C18A0019717A /* annutiyTable.json */; };
+		3777D2E31CF4C1A30019717A /* dataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2E21CF4C1A30019717A /* dataLoader.swift */; };
+		3777D2E71CF4C64D0019717A /* AnnuitySet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2E51CF4C64D0019717A /* AnnuitySet+CoreDataProperties.swift */; };
+		3777D2E81CF4C64D0019717A /* AnnuitySet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2E61CF4C64D0019717A /* AnnuitySet.swift */; };
+		3777D2EA1CF4EAA80019717A /* CashOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2E91CF4EAA80019717A /* CashOutViewController.swift */; };
+		3777D2EC1CF4EAFA0019717A /* AnnuityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2EB1CF4EAFA0019717A /* AnnuityViewController.swift */; };
+		3777D2EE1CF4F2A90019717A /* DataFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3777D2ED1CF4F2A90019717A /* DataFinder.swift */; };
+		3793C4291CECADB700377691 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793C4271CECADB700377691 /* User.swift */; };
+		3793C42B1CECD79700377691 /* Branding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793C42A1CECD79700377691 /* Branding.swift */; };
+		3793C4411CECD8F800377691 /* CustomBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793C4401CECD8F800377691 /* CustomBarChartView.swift */; };
+		3793C4431CECD9BB00377691 /* FontResizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793C4421CECD9BB00377691 /* FontResizing.swift */; };
+		379908C31CFEF91000C53F5E /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379908C21CFEF91000C53F5E /* NotesViewController.swift */; };
+		37DF321E1CEF83D300B39533 /* AboutYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */; };
+		37DF32231CEF8AEF00B39533 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */; };
+		37F07EDB1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F07EDA1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift */; };
+		37FFCCC21CF8D27B0079E906 /* DrawdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FFCCC11CF8D27B0079E906 /* DrawdownViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3763A31B1CFCCB890048A0C6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		37052A2D1CEE0D6B00D5B3AE /* LoginScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
+		37052A2F1CEE0DE100D5B3AE /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		370D0E9F1CEE46C7005EA33B /* fasterNumberEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fasterNumberEmitter.sks; sourceTree = "<group>"; };
+		372E10041CE8F2EF00D0F65E /* F1rstPension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F1rstPension.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		372E10071CE8F2EF00D0F65E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		372E100C1CE8F2EF00D0F65E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DCModeller.storyboard; sourceTree = "<group>"; };
+		372E100F1CE8F2EF00D0F65E /* DCModeller.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DCModeller.xcdatamodel; sourceTree = "<group>"; };
+		372E10111CE8F2EF00D0F65E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		372E10141CE8F2EF00D0F65E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		372E10161CE8F2EF00D0F65E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		372E101F1CE8F3FE00D0F65E /* NotUsedDCPension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotUsedDCPension.swift; sourceTree = "<group>"; };
+		372E10291CE90B9600D0F65E /* BuildUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildUpViewController.swift; sourceTree = "<group>"; };
+		372E102D1CE9235400D0F65E /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		3735298C1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DCPension+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3735298D1D5CD2A6008648E6 /* DCPension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCPension.swift; sourceTree = "<group>"; };
+		373988BA1D09863200102BEC /* NewContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewContributionsViewController.swift; sourceTree = "<group>"; };
+		3763A30B1CFAE36F0048A0C6 /* CustomCombinedChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCombinedChartView.swift; sourceTree = "<group>"; };
+		3763A3111CFB7C010048A0C6 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3777D2CC1CF054B60019717A /* NumberSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberSelectionViewController.swift; sourceTree = "<group>"; };
+		3777D2D11CF0616C0019717A /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		3777D2D31CF0679B0019717A /* ContRateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContRateSelectionViewController.swift; sourceTree = "<group>"; };
+		3777D2D51CF068C10019717A /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		3777D2D71CF0E8540019717A /* GenderSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderSelectionViewController.swift; sourceTree = "<group>"; };
+		3777D2DD1CF4C18A0019717A /* annutiyTable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = annutiyTable.json; sourceTree = "<group>"; };
+		3777D2E21CF4C1A30019717A /* dataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataLoader.swift; sourceTree = "<group>"; };
+		3777D2E51CF4C64D0019717A /* AnnuitySet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnnuitySet+CoreDataProperties.swift"; path = "../AnnuitySet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3777D2E61CF4C64D0019717A /* AnnuitySet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnuitySet.swift; path = ../AnnuitySet.swift; sourceTree = "<group>"; };
+		3777D2E91CF4EAA80019717A /* CashOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashOutViewController.swift; sourceTree = "<group>"; };
+		3777D2EB1CF4EAFA0019717A /* AnnuityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnuityViewController.swift; sourceTree = "<group>"; };
+		3777D2ED1CF4F2A90019717A /* DataFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFinder.swift; sourceTree = "<group>"; };
+		3793C4271CECADB700377691 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../User.swift; sourceTree = "<group>"; };
+		3793C42A1CECD79700377691 /* Branding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branding.swift; sourceTree = "<group>"; };
+		3793C4401CECD8F800377691 /* CustomBarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBarChartView.swift; sourceTree = "<group>"; };
+		3793C4421CECD9BB00377691 /* FontResizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontResizing.swift; sourceTree = "<group>"; };
+		379908C21CFEF91000C53F5E /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutYouViewController.swift; sourceTree = "<group>"; };
+		37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
+		37F07EDA1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlAlwaysValueChanged.swift; sourceTree = "<group>"; };
+		37FFCCC11CF8D27B0079E906 /* DrawdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawdownViewController.swift; sourceTree = "<group>"; };
+		C376EE06539FB68BD97D5B88 /* Pods-F1rstPension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F1rstPension.release.xcconfig"; path = "Pods/Target Support Files/Pods-F1rstPension/Pods-F1rstPension.release.xcconfig"; sourceTree = "<group>"; };
+		DF6A7CEE3692B454723FECD0 /* Pods-F1rstPension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F1rstPension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-F1rstPension/Pods-F1rstPension.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		372E10011CE8F2EF00D0F65E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		372E0FFB1CE8F2EF00D0F65E = {
+			isa = PBXGroup;
+			children = (
+				372E10061CE8F2EF00D0F65E /* F1rstPension */,
+				372E10051CE8F2EF00D0F65E /* Products */,
+				EE4607CEF73AAAA1332FDD5E /* Pods */,
+				ACCEEDDE8AC54C4B90B46808 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		372E10051CE8F2EF00D0F65E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				372E10041CE8F2EF00D0F65E /* F1rstPension.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		372E10061CE8F2EF00D0F65E /* F1rstPension */ = {
+			isa = PBXGroup;
+			children = (
+				372E10071CE8F2EF00D0F65E /* AppDelegate.swift */,
+				372E100B1CE8F2EF00D0F65E /* DCModeller.storyboard */,
+				372E101C1CE8F30900D0F65E /* ViewControllers */,
+				372E101D1CE8F31700D0F65E /* Views */,
+				372E101E1CE8F32000D0F65E /* Models */,
+				372E102C1CE9232800D0F65E /* Utility */,
+				372E10111CE8F2EF00D0F65E /* Assets.xcassets */,
+				372E10131CE8F2EF00D0F65E /* LaunchScreen.storyboard */,
+				372E10161CE8F2EF00D0F65E /* Info.plist */,
+			);
+			name = F1rstPension;
+			path = DCModeller;
+			sourceTree = "<group>";
+		};
+		372E101C1CE8F30900D0F65E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				37052A2D1CEE0D6B00D5B3AE /* LoginScreenViewController.swift */,
+				37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */,
+				372E10291CE90B9600D0F65E /* BuildUpViewController.swift */,
+				3777D2E91CF4EAA80019717A /* CashOutViewController.swift */,
+				3777D2EB1CF4EAFA0019717A /* AnnuityViewController.swift */,
+				37FFCCC11CF8D27B0079E906 /* DrawdownViewController.swift */,
+				373988BA1D09863200102BEC /* NewContributionsViewController.swift */,
+				37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */,
+				3777D2D31CF0679B0019717A /* ContRateSelectionViewController.swift */,
+				3777D2CC1CF054B60019717A /* NumberSelectionViewController.swift */,
+				3777D2D71CF0E8540019717A /* GenderSelectionViewController.swift */,
+				379908C21CFEF91000C53F5E /* NotesViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		372E101D1CE8F31700D0F65E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3793C4401CECD8F800377691 /* CustomBarChartView.swift */,
+				3763A30B1CFAE36F0048A0C6 /* CustomCombinedChartView.swift */,
+				37052A2F1CEE0DE100D5B3AE /* CheckBox.swift */,
+				37F07EDA1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		372E101E1CE8F32000D0F65E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3735298C1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift */,
+				3735298D1D5CD2A6008648E6 /* DCPension.swift */,
+				372E100E1CE8F2EF00D0F65E /* DCModeller.xcdatamodeld */,
+				3763A3111CFB7C010048A0C6 /* User+CoreDataProperties.swift */,
+				3793C4271CECADB700377691 /* User.swift */,
+				3777D2E51CF4C64D0019717A /* AnnuitySet+CoreDataProperties.swift */,
+				3777D2E61CF4C64D0019717A /* AnnuitySet.swift */,
+				3777D2ED1CF4F2A90019717A /* DataFinder.swift */,
+				372E101F1CE8F3FE00D0F65E /* NotUsedDCPension.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		372E102C1CE9232800D0F65E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				372E102D1CE9235400D0F65E /* Functions.swift */,
+				3777D2D51CF068C10019717A /* Globals.swift */,
+				3777D2D11CF0616C0019717A /* Strings.swift */,
+				3777D2E21CF4C1A30019717A /* dataLoader.swift */,
+				3793C42A1CECD79700377691 /* Branding.swift */,
+				3793C4421CECD9BB00377691 /* FontResizing.swift */,
+				370D0E9F1CEE46C7005EA33B /* fasterNumberEmitter.sks */,
+				3777D2DD1CF4C18A0019717A /* annutiyTable.json */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		ACCEEDDE8AC54C4B90B46808 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE4607CEF73AAAA1332FDD5E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF6A7CEE3692B454723FECD0 /* Pods-F1rstPension.debug.xcconfig */,
+				C376EE06539FB68BD97D5B88 /* Pods-F1rstPension.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		372E10031CE8F2EF00D0F65E /* F1rstPension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 372E10191CE8F2EF00D0F65E /* Build configuration list for PBXNativeTarget "F1rstPension" */;
+			buildPhases = (
+				F90D0DFD70325164DC07BBD4 /* [CP] Check Pods Manifest.lock */,
+				372E10001CE8F2EF00D0F65E /* Sources */,
+				372E10011CE8F2EF00D0F65E /* Frameworks */,
+				372E10021CE8F2EF00D0F65E /* Resources */,
+				3763A31B1CFCCB890048A0C6 /* Embed Frameworks */,
+				D6F27D1E41B9EE4090B3058E /* [CP] Embed Pods Frameworks */,
+				FAAF5BD553226E2BC8277D24 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = F1rstPension;
+			productName = DCModeller;
+			productReference = 372E10041CE8F2EF00D0F65E /* F1rstPension.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		372E0FFC1CE8F2EF00D0F65E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Daniel Jinks";
+				TargetAttributes = {
+					372E10031CE8F2EF00D0F65E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 7N6F5527D2;
+					};
+				};
+			};
+			buildConfigurationList = 372E0FFF1CE8F2EF00D0F65E /* Build configuration list for PBXProject "F1rstPension" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 372E0FFB1CE8F2EF00D0F65E;
+			productRefGroup = 372E10051CE8F2EF00D0F65E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				372E10031CE8F2EF00D0F65E /* F1rstPension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		372E10021CE8F2EF00D0F65E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				370D0EA11CEE46C7005EA33B /* fasterNumberEmitter.sks in Resources */,
+				372E10151CE8F2EF00D0F65E /* LaunchScreen.storyboard in Resources */,
+				372E10121CE8F2EF00D0F65E /* Assets.xcassets in Resources */,
+				372E100D1CE8F2EF00D0F65E /* DCModeller.storyboard in Resources */,
+				3777D2DE1CF4C18A0019717A /* annutiyTable.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D6F27D1E41B9EE4090B3058E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-F1rstPension/Pods-F1rstPension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F90D0DFD70325164DC07BBD4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FAAF5BD553226E2BC8277D24 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-F1rstPension/Pods-F1rstPension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		372E10001CE8F2EF00D0F65E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				372E10101CE8F2EF00D0F65E /* DCModeller.xcdatamodeld in Sources */,
+				3793C4411CECD8F800377691 /* CustomBarChartView.swift in Sources */,
+				3777D2D61CF068C10019717A /* Globals.swift in Sources */,
+				372E10201CE8F3FE00D0F65E /* NotUsedDCPension.swift in Sources */,
+				3793C4431CECD9BB00377691 /* FontResizing.swift in Sources */,
+				3735298E1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift in Sources */,
+				37DF321E1CEF83D300B39533 /* AboutYouViewController.swift in Sources */,
+				372E102E1CE9235400D0F65E /* Functions.swift in Sources */,
+				3793C42B1CECD79700377691 /* Branding.swift in Sources */,
+				372E102A1CE90B9600D0F65E /* BuildUpViewController.swift in Sources */,
+				3793C4291CECADB700377691 /* User.swift in Sources */,
+				3777D2EE1CF4F2A90019717A /* DataFinder.swift in Sources */,
+				3777D2D21CF0616C0019717A /* Strings.swift in Sources */,
+				3735298F1D5CD2A6008648E6 /* DCPension.swift in Sources */,
+				3777D2EC1CF4EAFA0019717A /* AnnuityViewController.swift in Sources */,
+				3777D2EA1CF4EAA80019717A /* CashOutViewController.swift in Sources */,
+				3777D2D81CF0E8540019717A /* GenderSelectionViewController.swift in Sources */,
+				37052A301CEE0DE100D5B3AE /* CheckBox.swift in Sources */,
+				3777D2E81CF4C64D0019717A /* AnnuitySet.swift in Sources */,
+				37FFCCC21CF8D27B0079E906 /* DrawdownViewController.swift in Sources */,
+				373988BB1D09863200102BEC /* NewContributionsViewController.swift in Sources */,
+				372E10081CE8F2EF00D0F65E /* AppDelegate.swift in Sources */,
+				3777D2E31CF4C1A30019717A /* dataLoader.swift in Sources */,
+				3763A3121CFB7C010048A0C6 /* User+CoreDataProperties.swift in Sources */,
+				3777D2CD1CF054B60019717A /* NumberSelectionViewController.swift in Sources */,
+				37DF32231CEF8AEF00B39533 /* DateSelectionViewController.swift in Sources */,
+				37052A2E1CEE0D6B00D5B3AE /* LoginScreenViewController.swift in Sources */,
+				379908C31CFEF91000C53F5E /* NotesViewController.swift in Sources */,
+				3777D2D41CF0679B0019717A /* ContRateSelectionViewController.swift in Sources */,
+				3777D2E71CF4C64D0019717A /* AnnuitySet+CoreDataProperties.swift in Sources */,
+				3763A30C1CFAE36F0048A0C6 /* CustomCombinedChartView.swift in Sources */,
+				37F07EDB1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		372E100B1CE8F2EF00D0F65E /* DCModeller.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				372E100C1CE8F2EF00D0F65E /* Base */,
+			);
+			name = DCModeller.storyboard;
+			sourceTree = "<group>";
+		};
+		372E10131CE8F2EF00D0F65E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				372E10141CE8F2EF00D0F65E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		372E10171CE8F2EF00D0F65E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		372E10181CE8F2EF00D0F65E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		372E101A1CE8F2EF00D0F65E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF6A7CEE3692B454723FECD0 /* Pods-F1rstPension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = DCModeller/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.firstactuarial.f1rstpension;
+				PRODUCT_NAME = F1rstPension;
+			};
+			name = Debug;
+		};
+		372E101B1CE8F2EF00D0F65E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C376EE06539FB68BD97D5B88 /* Pods-F1rstPension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = DCModeller/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.firstactuarial.f1rstpension;
+				PRODUCT_NAME = F1rstPension;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		372E0FFF1CE8F2EF00D0F65E /* Build configuration list for PBXProject "F1rstPension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				372E10171CE8F2EF00D0F65E /* Debug */,
+				372E10181CE8F2EF00D0F65E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		372E10191CE8F2EF00D0F65E /* Build configuration list for PBXNativeTarget "F1rstPension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				372E101A1CE8F2EF00D0F65E /* Debug */,
+				372E101B1CE8F2EF00D0F65E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		372E100E1CE8F2EF00D0F65E /* DCModeller.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				372E100F1CE8F2EF00D0F65E /* DCModeller.xcdatamodel */,
+			);
+			currentVersion = 372E100F1CE8F2EF00D0F65E /* DCModeller.xcdatamodel */;
+			path = DCModeller.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 372E0FFC1CE8F2EF00D0F65E /* Project object */;
+}
