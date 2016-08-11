@@ -12,8 +12,22 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
 
     let cornerRadius: CGFloat = 5.0
     
-    var employeeContributionRate = 0.0
-    var employerContributionRate = 0.0
+    var rowForEmployeeContributionRate: Int {
+        for i in 0..<GlobalConstants.ContributionRateIncrements.count {
+            if GlobalConstants.ContributionRateIncrements[i] == currentDCPension!.memberContributionRate! {
+                return i
+            }
+        }
+        return 0
+    }
+    var rowForEmployerContributionRate: Int {
+        for i in 0..<GlobalConstants.ContributionRateIncrements.count {
+            if GlobalConstants.ContributionRateIncrements[i] == currentDCPension!.employerContributionRate! {
+                return i
+            }
+        }
+        return 0
+    }
     
     var standardRowHeight: CGFloat {
         return 40.0
@@ -46,6 +60,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         didSet {
             employeeContPicker.dataSource = self
             employeeContPicker.delegate = self
+            employeeContPicker.selectRow(rowForEmployeeContributionRate, inComponent: 0, animated: false)
         }
     }
     
@@ -53,6 +68,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         didSet {
             employerContPicker.dataSource = self
             employerContPicker.delegate = self
+            employerContPicker.selectRow(rowForEmployerContributionRate, inComponent: 0, animated: false)
         }
     }
     
@@ -133,7 +149,13 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     func updateNumbers() {
         let formatter = createNumberFormatter(maxValue: 1.0, prefix: "£")
         formatter.minimumFractionDigits = 2
-        //grossMonthlyContributionsLabel.text = formatter.stringFromNumber(Double(currentDCPension!.totalContributionRate!) * Double(currentUser!.salary!) / 12.0)
+        if currentDCPension!.memberContributionRate != nil {
+            grossMonthlyContributionsLabel.text = formatter.stringFromNumber(Double(currentDCPension!.memberContributionRate!) * Double(currentUser!.salary!) / 12.0)
+        } else {
+            grossMonthlyContributionsLabel.text = formatter.stringFromNumber(0.0)
+        }
+        
+
     }
     
     func setBoxHeights() {
@@ -242,12 +264,14 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         contRateSelected = true
         
         switch pickerView {
-        case employeeContPicker: employeeContributionRate = Double(pickerData[row])
-        case employerContPicker: employerContributionRate = Double(pickerData[row])
+        case employeeContPicker: currentDCPension!.memberContributionRate = Double(pickerData[row])
+        case employerContPicker: currentDCPension!.employerContributionRate = Double(pickerData[row])
         default: break
         }
         
-        currentDCPension!.totalContributionRate = employeeContributionRate + employerContributionRate
+        //MARK: - TODO
+        //update to reflect employer NI payover
+        currentDCPension!.totalContributionRate = Double(currentDCPension!.memberContributionRate!) + Double(currentDCPension!.employerContributionRate!)
 
         updateUI()
         

@@ -42,6 +42,7 @@
 		379908C31CFEF91000C53F5E /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379908C21CFEF91000C53F5E /* NotesViewController.swift */; };
 		37DF321E1CEF83D300B39533 /* AboutYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */; };
 		37DF32231CEF8AEF00B39533 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */; };
+		37E3FD3A1D5CE4B2008BA73A /* TaxCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E3FD391D5CE4B2008BA73A /* TaxCalculator.swift */; };
 		37F07EDB1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F07EDA1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift */; };
 		37FFCCC21CF8D27B0079E906 /* DrawdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FFCCC11CF8D27B0079E906 /* DrawdownViewController.swift */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		379908C21CFEF91000C53F5E /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutYouViewController.swift; sourceTree = "<group>"; };
 		37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
+		37E3FD391D5CE4B2008BA73A /* TaxCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxCalculator.swift; sourceTree = "<group>"; };
 		37F07EDA1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlAlwaysValueChanged.swift; sourceTree = "<group>"; };
 		37FFCCC11CF8D27B0079E906 /* DrawdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawdownViewController.swift; sourceTree = "<group>"; };
 		C376EE06539FB68BD97D5B88 /* Pods-F1rstPension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F1rstPension.release.xcconfig"; path = "Pods/Target Support Files/Pods-F1rstPension/Pods-F1rstPension.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				3777D2E61CF4C64D0019717A /* AnnuitySet.swift */,
 				3777D2ED1CF4F2A90019717A /* DataFinder.swift */,
 				372E101F1CE8F3FE00D0F65E /* NotUsedDCPension.swift */,
+				37E3FD391D5CE4B2008BA73A /* TaxCalculator.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				3777D2D61CF068C10019717A /* Globals.swift in Sources */,
 				372E10201CE8F3FE00D0F65E /* NotUsedDCPension.swift in Sources */,
 				3793C4431CECD9BB00377691 /* FontResizing.swift in Sources */,
+				37E3FD3A1D5CE4B2008BA73A /* TaxCalculator.swift in Sources */,
 				3735298E1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift in Sources */,
 				37DF321E1CEF83D300B39533 /* AboutYouViewController.swift in Sources */,
 				372E102E1CE9235400D0F65E /* Functions.swift in Sources */,

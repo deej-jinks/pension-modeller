@@ -12,6 +12,7 @@ import CoreData
 
 class DCPension: NSManagedObject {
     
+    let taxCalculator = TaxCalculator()
     var drawdownFundValuesAndIncome: (incomes: [Double], fundValues:[Double]) {
         
         
@@ -87,6 +88,18 @@ class DCPension: NSManagedObject {
     var cashAmount: Double {
         return Double(cashProportion!) * fundValueAtRetirement
     }
+    
+    var monthlyMemberContributions_Gross: Double {
+        return Double(memberContributionRate!) * Double(user!.salary!) / 12.0
+    }
+    
+    var monthlyNISaving: Double {
+        // if salary sacrifice {
+        return taxCalculator.niPerYear(Double(user!.salary!)) - taxCalculator.niPerYear(Double(user!.salary!) - monthlyMemberContributions_Gross)
+        // }
+    }
+    
+    //var monthlyTaxSaving: Double
     
 }
 
