@@ -21,6 +21,8 @@
         <attribute name="investmentReturnsPreRetirement" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="memberContributionRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="niPayoverProportion" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="paymentMethod" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="selectedRetirementAge" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="totalContributionRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="dcPension" inverseEntity="User" syncable="YES"/>
@@ -37,7 +39,7 @@
     </entity>
     <elements>
         <element name="AnnuitySet" positionX="-63" positionY="90" width="128" height="165"/>
-        <element name="DCPension" positionX="-54" positionY="18" width="128" height="240"/>
+        <element name="DCPension" positionX="-54" positionY="18" width="128" height="270"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>

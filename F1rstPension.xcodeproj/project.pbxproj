@@ -18,7 +18,6 @@
 		372E10201CE8F3FE00D0F65E /* NotUsedDCPension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372E101F1CE8F3FE00D0F65E /* NotUsedDCPension.swift */; };
 		372E102A1CE90B9600D0F65E /* BuildUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372E10291CE90B9600D0F65E /* BuildUpViewController.swift */; };
 		372E102E1CE9235400D0F65E /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372E102D1CE9235400D0F65E /* Functions.swift */; };
-		3735298E1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735298C1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift */; };
 		3735298F1D5CD2A6008648E6 /* DCPension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3735298D1D5CD2A6008648E6 /* DCPension.swift */; };
 		373988BB1D09863200102BEC /* NewContributionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373988BA1D09863200102BEC /* NewContributionsViewController.swift */; };
 		3763A30C1CFAE36F0048A0C6 /* CustomCombinedChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763A30B1CFAE36F0048A0C6 /* CustomCombinedChartView.swift */; };
@@ -43,6 +42,7 @@
 		37DF321E1CEF83D300B39533 /* AboutYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */; };
 		37DF32231CEF8AEF00B39533 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */; };
 		37E3FD3A1D5CE4B2008BA73A /* TaxCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E3FD391D5CE4B2008BA73A /* TaxCalculator.swift */; };
+		37E3FD3C1D5E26CA008BA73A /* DCPension+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E3FD3B1D5E26CA008BA73A /* DCPension+CoreDataProperties.swift */; };
 		37F07EDB1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F07EDA1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift */; };
 		37FFCCC21CF8D27B0079E906 /* DrawdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FFCCC11CF8D27B0079E906 /* DrawdownViewController.swift */; };
 /* End PBXBuildFile section */
@@ -74,7 +74,6 @@
 		372E101F1CE8F3FE00D0F65E /* NotUsedDCPension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotUsedDCPension.swift; sourceTree = "<group>"; };
 		372E10291CE90B9600D0F65E /* BuildUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildUpViewController.swift; sourceTree = "<group>"; };
 		372E102D1CE9235400D0F65E /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
-		3735298C1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DCPension+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3735298D1D5CD2A6008648E6 /* DCPension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCPension.swift; sourceTree = "<group>"; };
 		373988BA1D09863200102BEC /* NewContributionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewContributionsViewController.swift; sourceTree = "<group>"; };
 		3763A30B1CFAE36F0048A0C6 /* CustomCombinedChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCombinedChartView.swift; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutYouViewController.swift; sourceTree = "<group>"; };
 		37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		37E3FD391D5CE4B2008BA73A /* TaxCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxCalculator.swift; sourceTree = "<group>"; };
+		37E3FD3B1D5E26CA008BA73A /* DCPension+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DCPension+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		37F07EDA1D0AC88500B3F644 /* SegmentedControlAlwaysValueChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlAlwaysValueChanged.swift; sourceTree = "<group>"; };
 		37FFCCC11CF8D27B0079E906 /* DrawdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawdownViewController.swift; sourceTree = "<group>"; };
 		C376EE06539FB68BD97D5B88 /* Pods-F1rstPension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-F1rstPension.release.xcconfig"; path = "Pods/Target Support Files/Pods-F1rstPension/Pods-F1rstPension.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		372E101E1CE8F32000D0F65E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3735298C1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift */,
+				37E3FD3B1D5E26CA008BA73A /* DCPension+CoreDataProperties.swift */,
 				3735298D1D5CD2A6008648E6 /* DCPension.swift */,
 				372E100E1CE8F2EF00D0F65E /* DCModeller.xcdatamodeld */,
 				3763A3111CFB7C010048A0C6 /* User+CoreDataProperties.swift */,
@@ -361,7 +361,6 @@
 				372E10201CE8F3FE00D0F65E /* NotUsedDCPension.swift in Sources */,
 				3793C4431CECD9BB00377691 /* FontResizing.swift in Sources */,
 				37E3FD3A1D5CE4B2008BA73A /* TaxCalculator.swift in Sources */,
-				3735298E1D5CD2A6008648E6 /* DCPension+CoreDataProperties.swift in Sources */,
 				37DF321E1CEF83D300B39533 /* AboutYouViewController.swift in Sources */,
 				372E102E1CE9235400D0F65E /* Functions.swift in Sources */,
 				3793C42B1CECD79700377691 /* Branding.swift in Sources */,
@@ -376,6 +375,7 @@
 				37052A301CEE0DE100D5B3AE /* CheckBox.swift in Sources */,
 				3777D2E81CF4C64D0019717A /* AnnuitySet.swift in Sources */,
 				37FFCCC21CF8D27B0079E906 /* DrawdownViewController.swift in Sources */,
+				37E3FD3C1D5E26CA008BA73A /* DCPension+CoreDataProperties.swift in Sources */,
 				373988BB1D09863200102BEC /* NewContributionsViewController.swift in Sources */,
 				372E10081CE8F2EF00D0F65E /* AppDelegate.swift in Sources */,
 				3777D2E31CF4C1A30019717A /* dataLoader.swift in Sources */,

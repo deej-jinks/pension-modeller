@@ -14,7 +14,8 @@ class DCPension: NSManagedObject {
     
     let taxCalculator = TaxCalculator()
     var drawdownFundValuesAndIncome: (incomes: [Double], fundValues:[Double]) {
-        
+
+
         
         let investmentReturn = (1.0 + Double(investmentReturnInDrawdown!))
         let incomeIncreases = Bool(incomeInflationaryIncreases!) ? (1.0 + Double(currentUser!.priceInflation!)) : 1.0
@@ -88,18 +89,60 @@ class DCPension: NSManagedObject {
     var cashAmount: Double {
         return Double(cashProportion!) * fundValueAtRetirement
     }
+
+    
+    // contribution calculations
+    var monthlySalary: Double {
+        return Double(user!.salary!) / 12.0
+    }
     
     var monthlyMemberContributions_Gross: Double {
-        return Double(memberContributionRate!) * Double(user!.salary!) / 12.0
+        return Double(memberContributionRate!) * monthlySalary
     }
     
     var monthlyNISaving: Double {
-        // if salary sacrifice {
-        return taxCalculator.niPerYear(Double(user!.salary!)) - taxCalculator.niPerYear(Double(user!.salary!) - monthlyMemberContributions_Gross)
-        // }
+        if paymentMethod == GlobalConstants.DCPaymentMethods.SalarySacrifice {
+            return taxCalculator.niPerMonth(monthlySalary) - taxCalculator.niPerMonth(monthlySalary - monthlyMemberContributions_Gross)
+        } else {
+        return 0.0
+        }
     }
     
-    //var monthlyTaxSaving: Double
+    var monthlyTotalTaxRelief: Double {
+        var underpin = 0.0
+        if paymentMethod == GlobalConstants.DCPaymentMethods.ReliefAtSource {
+            underpin = monthlyMemberContributions_Gross * TaxCalculator.IncomeTaxRatesAndLimits.BasicRate
+        }
+        return max(underpin, taxCalculator.incomeTaxPerMonth(monthlySalary) - taxCalculator.incomeTaxPerYear(monthlySalary - monthlyMemberContributions_Gross))
+    }
+    
+    var monthlyImmediateTaxRelief: Double {
+        if paymentMethod == GlobalConstants.DCPaymentMethods.NetPay {
+            return monthlyMemberContributions_Gross * TaxCalculator.IncomeTaxRatesAndLimits.BasicRate
+        } else {
+            return monthlyTotalTaxRelief
+        }
+    }
+    
+    var monthlyTaxReclaim: Double {
+        return monthlyTotalTaxRelief - monthlyImmediateTaxRelief
+    }
+    
+    var monthlyNIPayover: Double {
+        var payover = 0.0
+        if paymentMethod == GlobalConstants.DCPaymentMethods.SalarySacrifice {
+            payover = (taxCalculator.niPerMonth(monthlySalary) - taxCalculator.niPerMonth(monthlySalary - monthlyMemberContributions_Gross)) * Double(niPayoverProportion!)
+        }
+        return payover
+    }
+    
+    var monthlyEmployerContributions: Double {
+        return monthlySalary * Double(employerContributionRate!)
+    }
+    
+    var totalIntoPot: Double {
+        return monthlyMemberContributions_Gross + monthlyEmployerContributions + monthlyNIPayover
+    }
     
 }
 

@@ -14,6 +14,12 @@ var annuitiesUpdated = false
 
 struct GlobalConstants {
     
+    struct DCPaymentMethods {
+        static let NetPay = "net pay"
+        static let ReliefAtSource = "relief at source"
+        static let SalarySacrifice = "salary sacrifice"
+    }
+    
     struct TaxLimits {
         static let AnnualAllowance = 40000.0
         static let LifetimeAllowance = 1000000.0
