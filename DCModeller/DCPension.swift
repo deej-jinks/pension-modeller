@@ -113,7 +113,7 @@ class DCPension: NSManagedObject {
         if paymentMethod == GlobalConstants.DCPaymentMethods.ReliefAtSource {
             underpin = monthlyMemberContributions_Gross * TaxCalculator.IncomeTaxRatesAndLimits.BasicRate
         }
-        return max(underpin, taxCalculator.incomeTaxPerMonth(monthlySalary) - taxCalculator.incomeTaxPerYear(monthlySalary - monthlyMemberContributions_Gross))
+        return max(underpin, taxCalculator.incomeTaxPerMonth(monthlySalary) - taxCalculator.incomeTaxPerMonth(monthlySalary - monthlyMemberContributions_Gross))
     }
     
     var monthlyImmediateTaxRelief: Double {
@@ -128,10 +128,14 @@ class DCPension: NSManagedObject {
         return monthlyTotalTaxRelief - monthlyImmediateTaxRelief
     }
     
+    var monthlyNetPensionCost: Double {
+        return monthlyMemberContributions_Gross - monthlyNISaving - monthlyTotalTaxRelief
+    }
+    
     var monthlyNIPayover: Double {
         var payover = 0.0
         if paymentMethod == GlobalConstants.DCPaymentMethods.SalarySacrifice {
-            payover = (taxCalculator.niPerMonth(monthlySalary) - taxCalculator.niPerMonth(monthlySalary - monthlyMemberContributions_Gross)) * Double(niPayoverProportion!)
+            payover = (taxCalculator.employerNIPerMonth(monthlySalary) - taxCalculator.employerNIPerMonth(monthlySalary - monthlyMemberContributions_Gross)) * Double(niPayoverProportion!)
         }
         return payover
     }

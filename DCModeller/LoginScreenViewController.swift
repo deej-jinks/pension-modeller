@@ -303,13 +303,17 @@ class LoginScreenViewController: UIViewController {
         request.name = name
         request.currentFundValue = nil
         request.investmentReturnsPreRetirement = 0.05
-        request.totalContributionRate = nil
+        request.totalContributionRate = 0.0
+        request.memberContributionRate = 0.0
+        request.employerContributionRate = 0.0
         request.annuitySpouseProportion = 0.5
         request.incomeInflationaryIncreases = true
         request.cashProportion = 0.25
         request.initialDrawdownIncome = nil //??
         request.selectedRetirementAge = nil
         request.investmentReturnInDrawdown = 0.03
+        request.niPayoverProportion = 0.0
+        request.paymentMethod = GlobalConstants.DCPaymentMethods.ReliefAtSource
         print("about to link, name : \(name)")
         request.user = currentUser!
         print("linked, name : \(name)")

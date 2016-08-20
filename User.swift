@@ -12,6 +12,10 @@ import CoreData
 
 class User: NSManagedObject {
 
+    var monthlySalary: Double {
+        return Double(salary!) / 12.0
+    }
+    
     var yearOfBirth: Int {
         return NSCalendar.currentCalendar().component(.Year, fromDate: dateOfBirth!)
     }

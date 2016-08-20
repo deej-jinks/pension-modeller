@@ -10,6 +10,7 @@
 		37052A2E1CEE0D6B00D5B3AE /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052A2D1CEE0D6B00D5B3AE /* LoginScreenViewController.swift */; };
 		37052A301CEE0DE100D5B3AE /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37052A2F1CEE0DE100D5B3AE /* CheckBox.swift */; };
 		370D0EA11CEE46C7005EA33B /* fasterNumberEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 370D0E9F1CEE46C7005EA33B /* fasterNumberEmitter.sks */; };
+		371F708E1D6330DA006A97F8 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371F708D1D6330DA006A97F8 /* Charts.framework */; };
 		372E10081CE8F2EF00D0F65E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372E10071CE8F2EF00D0F65E /* AppDelegate.swift */; };
 		372E100D1CE8F2EF00D0F65E /* DCModeller.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372E100B1CE8F2EF00D0F65E /* DCModeller.storyboard */; };
 		372E10101CE8F2EF00D0F65E /* DCModeller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 372E100E1CE8F2EF00D0F65E /* DCModeller.xcdatamodeld */; };
@@ -64,6 +65,7 @@
 		37052A2D1CEE0D6B00D5B3AE /* LoginScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
 		37052A2F1CEE0DE100D5B3AE /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		370D0E9F1CEE46C7005EA33B /* fasterNumberEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fasterNumberEmitter.sks; sourceTree = "<group>"; };
+		371F708D1D6330DA006A97F8 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "Pods/../build/Debug-iphoneos/Charts/Charts.framework"; sourceTree = "<group>"; };
 		372E10041CE8F2EF00D0F65E /* F1rstPension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = F1rstPension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		372E10071CE8F2EF00D0F65E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		372E100C1CE8F2EF00D0F65E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DCModeller.storyboard; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				371F708E1D6330DA006A97F8 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +219,7 @@
 		ACCEEDDE8AC54C4B90B46808 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				371F708D1D6330DA006A97F8 /* Charts.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -505,6 +509,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
+				);
 				INFOPLIST_FILE = DCModeller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -520,6 +528,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
+				);
 				INFOPLIST_FILE = DCModeller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

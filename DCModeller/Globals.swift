@@ -18,6 +18,7 @@ struct GlobalConstants {
         static let NetPay = "net pay"
         static let ReliefAtSource = "relief at source"
         static let SalarySacrifice = "salary sacrifice"
+        static let All = [DCPaymentMethods.NetPay, DCPaymentMethods.ReliefAtSource, DCPaymentMethods.SalarySacrifice]
     }
     
     struct TaxLimits {

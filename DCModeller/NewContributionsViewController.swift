@@ -10,8 +10,18 @@ import UIKit
 
 class NewContributionsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    // dimensions
     let cornerRadius: CGFloat = 5.0
+    var standardRowHeight: CGFloat {
+        return 40.0
+    }
     
+    var standardSeparatorHeight: CGFloat {
+        return self.view.frame.height * 0.03
+    }
+    
+    
+    // finding rows to select for current contributions rates
     var rowForEmployeeContributionRate: Int {
         for i in 0..<GlobalConstants.ContributionRateIncrements.count {
             if GlobalConstants.ContributionRateIncrements[i] == currentDCPension!.memberContributionRate! {
@@ -29,21 +39,19 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         return 0
     }
     
-    var standardRowHeight: CGFloat {
-        return 40.0
+    var inputStep: Int = 1
+    
+    // instruction box text
+    var instructionBoxText: String {
+        switch inputStep {
+        case 1: return "Please use the controls below to enter your contribution rate (as a percentage of salary), and the rate paid by your employer if relevant."
+        case 2: return "Please select the method by which you pay your pension contributions. Double tap on a method to find out more."
+        case 3: return "When you pay pension contributions by salary sacrifice, your employer saves on its national insurance bill. Some employers choose to pass some or all of this saving on to employees. Please use the slider below to set the rate of 'NI payover', if relevant."
+        case 4: return "Based on the selected inputs, the effective total contribution rate is around " + createPercentageNumberFormatter().stringFromNumber(Double(currentDCPension!.totalContributionRate!))! + ". We will use this figure as a starting point in the modeller, but you can change it later."
+        default: return ""
+        }
     }
     
-    var standardSeparatorHeight: CGFloat {
-        return self.view.frame.height * 0.03
-    }
-    
-    var contributionMethodChosen = 0
-    
-    // first input made
-    var contRateSelected = false
-    
-    // second input made
-    var contMethodSelected = false
     
     // toggleButton statuses
     var showContsDetails = false
@@ -53,8 +61,9 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     
     //MARK: - outlets
     
-    @IBOutlet weak var grossMonthlyContributionsLabel: UILabel!
+
     
+    @IBOutlet weak var instructionsBoxLabel: UILabel!
     
     @IBOutlet weak var employeeContPicker: UIPickerView! {
         didSet {
@@ -72,6 +81,23 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
     
+    @IBOutlet weak var contributionMethodSelector: UISegmentedControl! {
+        didSet {
+            if let method = currentDCPension!.paymentMethod {
+                switch method {
+                case GlobalConstants.DCPaymentMethods.NetPay: contributionMethodSelector.selectedSegmentIndex = 0
+                case GlobalConstants.DCPaymentMethods.ReliefAtSource: contributionMethodSelector.selectedSegmentIndex = 1
+                case GlobalConstants.DCPaymentMethods.SalarySacrifice: contributionMethodSelector.selectedSegmentIndex = 2
+                default: contributionMethodSelector.selectedSegmentIndex = UISegmentedControlNoSegment
+                }
+            } else {
+                contributionMethodSelector.selectedSegmentIndex = UISegmentedControlNoSegment
+            }
+        }
+    }
+    
+    @IBOutlet weak var grossMonthlyContributionsLabel: UILabel!
+    
     @IBOutlet weak var grossContsBox: UIView!
     @IBOutlet weak var separatorEOrContDetails: UIView! {
         didSet {
@@ -79,6 +105,27 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
     @IBOutlet weak var netContsBox: UIView!
+    @IBOutlet weak var contCalcContainer: UIView!
+    @IBOutlet weak var incomeTaxSavingLabel: UILabel!
+    @IBOutlet weak var niSavingLabel: UILabel!
+    @IBOutlet weak var taxToReclaimLabel: UILabel!
+    @IBOutlet weak var netPensionCostLabel: UILabel!
+    
+    @IBOutlet weak var niPayoverSlider: UISlider! {
+        didSet {
+            if currentDCPension!.niPayoverProportion != nil {
+                niPayoverSlider.value = Float(currentDCPension!.niPayoverProportion!)
+            } else {
+                niPayoverSlider.value = 0.0
+            }
+        }
+    }
+    @IBOutlet weak var niPayoverProportionLabel: UILabel!
+    
+    @IBOutlet weak var memberContributionsIntoPotLabel: UILabel!
+    @IBOutlet weak var employerContributionsIntoPotLabel: UILabel!
+    @IBOutlet weak var niPayoverIntoPotLabel: UILabel!
+    @IBOutlet weak var totalIntoPotLabel: UILabel!
     
     @IBOutlet var viewsToRound: [UIView]! {
         didSet {
@@ -98,9 +145,6 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
     
-    @IBOutlet weak var contributionMethodSelector: UISegmentedControl!
-    
-    
     //MARK: - contstraints to animate / change
     
     @IBOutlet var pickerBoxHHeights: [NSLayoutConstraint]! {
@@ -114,10 +158,12 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     @IBOutlet weak var contributionMethodBoxHeight: NSLayoutConstraint!
     @IBOutlet weak var niPayoverBoxHeight: NSLayoutConstraint!
     
-    
-    @IBOutlet weak var contCalcContainer: UIView!
     @IBOutlet weak var grossContributionsBoxHeight: NSLayoutConstraint!
-    @IBOutlet weak var separatorE_or_contDetails_height: NSLayoutConstraint!
+
+    @IBOutlet weak var contributionCalcRow1Height: NSLayoutConstraint!
+    @IBOutlet weak var contributionCalcRow2Height: NSLayoutConstraint!
+    @IBOutlet weak var contributionCalcRow3Height: NSLayoutConstraint!
+    
     @IBOutlet weak var netContributionsBoxHeight: NSLayoutConstraint!
     
     @IBOutlet weak var cashIntoPotDetailRow1Height: NSLayoutConstraint!
@@ -135,27 +181,49 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
 
     func initialiseUI() {
+        updateText()
         updateNumbers()
         setBoxHeights()
         setAlphas()
     }
     
     func updateUI() {
+        updateText()
         updateNumbers()
         setBoxHeightsAnimated()
         setAlphasAnimated()
     }
     
+    func updateText() {
+        instructionsBoxLabel.text = instructionBoxText
+    }
+    
     func updateNumbers() {
         let formatter = createNumberFormatter(maxValue: 1.0, prefix: "£")
         formatter.minimumFractionDigits = 2
-        if currentDCPension!.memberContributionRate != nil {
-            grossMonthlyContributionsLabel.text = formatter.stringFromNumber(Double(currentDCPension!.memberContributionRate!) * Double(currentUser!.salary!) / 12.0)
+        
+        if inputStep >= 2 {
+            grossMonthlyContributionsLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyMemberContributions_Gross)! + " "
+            if inputStep >= 3 {
+                incomeTaxSavingLabel.text = "(" + formatter.stringFromNumber(currentDCPension!.monthlyImmediateTaxRelief)! + ")"
+                niSavingLabel.text = "(" + formatter.stringFromNumber(currentDCPension!.monthlyNISaving)! + ")"
+                taxToReclaimLabel.text = "(" + formatter.stringFromNumber(currentDCPension!.monthlyTaxReclaim)! + ")"
+                netPensionCostLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyNetPensionCost)! + " "
+                
+                if currentDCPension!.niPayoverProportion != nil {
+                niPayoverProportionLabel.text = createPercentageNumberFormatter().stringFromNumber(currentDCPension!.niPayoverProportion!)
+                } else {
+                    niPayoverProportionLabel.text = "0.0%"
+                }
+                
+                memberContributionsIntoPotLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyMemberContributions_Gross)! + " "
+                employerContributionsIntoPotLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyEmployerContributions)! + " "
+                niPayoverIntoPotLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyNIPayover)! + " "
+                totalIntoPotLabel.text = " " + formatter.stringFromNumber(currentDCPension!.totalIntoPot)! + " "
+            }
         } else {
             grossMonthlyContributionsLabel.text = formatter.stringFromNumber(0.0)
         }
-        
-
     }
     
     func setBoxHeights() {
@@ -163,7 +231,10 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         niPayoverBoxHeight.constant = heightForNIPayoverInputBox
 
         grossContributionsBoxHeight.constant = heightForGrossContsBox
-        separatorE_or_contDetails_height.constant = heightForSeparatorEOrContDetails
+        
+        contributionCalcRow1Height.constant = heightForContributionCalcRow1
+        contributionCalcRow2Height.constant = heightForContributionCalcRow2
+        contributionCalcRow3Height.constant = heightForContributionCalcRow3
         netContributionsBoxHeight.constant = heightForNetContsBox
         
         cashIntoPotDetailRow1Height.constant = heightForCashIntoPotDetailRow1
@@ -177,7 +248,6 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
             self.setBoxHeights()
             self.view.layoutIfNeeded()
         })
-        
     }
     
     func setAlphas() {
@@ -204,18 +274,30 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     
     @IBAction func contributionMethodSelected(sender: UISegmentedControl) {
         
-        contMethodSelected = true
-        
-        if sender.selectedSegmentIndex == contributionMethodChosen {
+        if currentDCPension!.paymentMethod == GlobalConstants.DCPaymentMethods.All[sender.selectedSegmentIndex] {
             let alert = UIAlertView()
-            alert.title = "Info Box"
-            alert.message = "Will show info on this contribution method."
+            alert.title = currentDCPension!.paymentMethod!
+            var msg = ""
+            switch currentDCPension!.paymentMethod! {
+            case GlobalConstants.DCPaymentMethods.NetPay: msg = Strings.NetPayDescription
+            case GlobalConstants.DCPaymentMethods.ReliefAtSource: msg = Strings.ReliefAtSourceDescription
+            case GlobalConstants.DCPaymentMethods.SalarySacrifice: msg = Strings.SalarySacrificeDescription
+            default: break
+            }
+            alert.message = msg
             alert.addButtonWithTitle("OK")
             alert.show()
         } else {
-            contributionMethodChosen = sender.selectedSegmentIndex
+            currentDCPension!.paymentMethod = GlobalConstants.DCPaymentMethods.All[sender.selectedSegmentIndex]
         }
         
+        
+        if currentDCPension!.paymentMethod! == GlobalConstants.DCPaymentMethods.SalarySacrifice {
+            inputStep = max(inputStep, 3)
+        } else {
+            inputStep = max(inputStep, 4)
+        }
+        updateTotalContributionRate()
         updateUI()
     }
 
@@ -261,27 +343,66 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        contRateSelected = true
+        inputStep = max(inputStep, 2)
         
-        switch pickerView {
-        case employeeContPicker: currentDCPension!.memberContributionRate = Double(pickerData[row])
-        case employerContPicker: currentDCPension!.employerContributionRate = Double(pickerData[row])
-        default: break
-        }
-        
-        //MARK: - TODO
-        //update to reflect employer NI payover
-        currentDCPension!.totalContributionRate = Double(currentDCPension!.memberContributionRate!) + Double(currentDCPension!.employerContributionRate!)
+        currentDCPension!.memberContributionRate = GlobalConstants.ContributionRateIncrements[employeeContPicker.selectedRowInComponent(0)]
+        currentDCPension!.employerContributionRate = GlobalConstants.ContributionRateIncrements[employerContPicker.selectedRowInComponent(0)]
 
+        updateTotalContributionRate()
         updateUI()
         
         // also check to unhide next step..... TODO
     }
     
+    func updateTotalContributionRate() {
+        let unroundedRate = Double(currentDCPension!.memberContributionRate!) + Double(currentDCPension!.employerContributionRate!) + currentDCPension!.monthlyNIPayover / currentUser!.monthlySalary
+        var roundingDifference = 1.0
+        var closestRate = 0.00
+        for i in 0..<GlobalConstants.ContributionRateIncrements.count {
+            if abs(unroundedRate - GlobalConstants.ContributionRateIncrements[i]) < roundingDifference {
+                roundingDifference = abs(unroundedRate - GlobalConstants.ContributionRateIncrements[i])
+                closestRate = GlobalConstants.ContributionRateIncrements[i]
+            }
+        }
+        currentDCPension!.totalContributionRate = closestRate
+    }
+    
+    @IBAction func niPayoverSliderValueChanged(sender: UISlider) {
+        niPayoverSlider.value = floor(niPayoverSlider.value * 20.0 + 1.0 / 40.0) / 20.0
+        currentDCPension!.niPayoverProportion = Double(sender.value)
+        inputStep = max(inputStep, 4)
+        updateTotalContributionRate()
+        updateUI()
+    }
+    @IBAction func niPayoverIncrementerPressed(sender: UIButton) {
+        if sender.tag == 1 {
+            niPayoverSlider.value = min(1.0, niPayoverSlider.value + 0.05)
+        } else {
+            niPayoverSlider.value = max(0.0, niPayoverSlider.value - 0.05)
+        }
+        currentDCPension!.niPayoverProportion = Double(niPayoverSlider.value)
+        inputStep = max(inputStep, 4)
+        updateTotalContributionRate()
+        updateUI()
+    }
+    
+    @IBAction func changeInstructionPage(sender: UIButton) {
+        switch sender.tag {
+        case 0: inputStep = max(0, inputStep - 1)
+        case 1: inputStep = min(4, inputStep + 1)
+        default: break
+        }
+        if currentDCPension!.paymentMethod! != GlobalConstants.DCPaymentMethods.SalarySacrifice && inputStep == 3 {
+            changeInstructionPage(sender)
+        }
+        updateUI()
+    }
+    
+    
     //MARK: - calculated variables for layout constraints
     
     var heightForContsMethodInputBox: CGFloat {
-        if contRateSelected {
+        if inputStep >= 2 {
             return standardRowHeight
         } else {
             return 0.0
@@ -289,7 +410,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     var heightForNIPayoverInputBox: CGFloat {
-        if contributionMethodChosen == 2  { //salary sacrifice
+        if inputStep >= 3 && currentDCPension!.paymentMethod! == GlobalConstants.DCPaymentMethods.SalarySacrifice  {
             return standardRowHeight
         } else {
             return 0.0
@@ -297,7 +418,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     var heightForGrossContsBox: CGFloat {
-        if contRateSelected {
+        if inputStep >= 2 {
             return standardRowHeight
         } else {
             return 0.0
@@ -313,7 +434,37 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     var heightForNetContsBox: CGFloat {
-        if contMethodSelected {
+        if inputStep >= 3 {
+            return standardRowHeight
+        } else {
+            return 0.0
+        }
+    }
+    
+    var heightForContributionCalcRow1: CGFloat {
+        if !showContsDetails {
+            return standardSeparatorHeight / 3.0
+        } else if currentDCPension!.monthlyImmediateTaxRelief != 0.0 {
+            return standardRowHeight
+        } else {
+            return 0.0
+        }
+    }
+    
+    var heightForContributionCalcRow2: CGFloat {
+        if !showContsDetails {
+            return standardSeparatorHeight / 3.0
+        } else if currentDCPension!.monthlyNISaving != 0.0 {
+            return standardRowHeight
+        } else {
+            return 0.0
+        }
+    }
+    
+    var heightForContributionCalcRow3: CGFloat {
+        if !showContsDetails {
+            return standardSeparatorHeight / 3.0
+        } else if currentDCPension!.monthlyTaxReclaim != 0.0 {
             return standardRowHeight
         } else {
             return 0.0
@@ -321,7 +472,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     var heightForCashIntoPotDetailRow1: CGFloat {
-        if contRateSelected && showCashIntoPotDetail {
+        if inputStep >= 2 && showCashIntoPotDetail {
             return standardRowHeight
         } else {
             return 0.0
@@ -329,7 +480,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     var heightForCashIntoPotDetailRow2: CGFloat {
-        if contRateSelected && showCashIntoPotDetail {
+        if inputStep >= 2 && showCashIntoPotDetail {
             return standardRowHeight
         } else {
             return 0.0
@@ -337,7 +488,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     var heightForCashIntoPotDetailRow3: CGFloat {
-        if contributionMethodChosen == 2 && showCashIntoPotDetail {
+        if currentDCPension!.paymentMethod! == GlobalConstants.DCPaymentMethods.SalarySacrifice && showCashIntoPotDetail {
             return standardRowHeight
         } else {
             return 0.0
@@ -345,44 +496,11 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     var heightForCashIntoPotResultRow: CGFloat {
-        if contMethodSelected {
+        if inputStep >= 3 {
             return standardRowHeight
         } else {
             return 0.0
         }
     }
-    
-//    var heightForCashInDetailRow1: CGFloat {
-//        if showCashIntoPotDetail && contMethodSelected {
-//            return standardRowHeight
-//        } else {
-//            return 0.0
-//        }
-//    }
-//    
-//    var heightForCashInDetailRow2: CGFloat {
-//        if showCashIntoPotDetail && contMethodSelected {
-//            return standardRowHeight
-//        } else {
-//            return 0.0
-//        }
-//    }
-//    
-//    var heightForCashInDetailRow3: CGFloat {
-//        if showCashIntoPotDetail && contributionMethodChosen == 2 {
-//            return standardRowHeight
-//        } else {
-//            return 0.0
-//        }
-//    }
-//    
-//    var heightForCashInResultRow: CGFloat {
-//        if contMethodSelected {
-//            return standardRowHeight
-//        } else {
-//            return 0.0
-//        }
-//    }
-
 
 }

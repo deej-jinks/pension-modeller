@@ -38,6 +38,29 @@ class TaxCalculator {
         static let RateFromUEL = 0.02
     }
     
+    struct EmployerNIRatesAndLimits {
+        static let LEL = 5824.0
+        static let PrimaryThreshold = 8060.0
+        static let SecondaryThreshold = 8112.0
+        static let UEL = 43004.0
+        
+        static let RateBelowST = 0.0
+        static let RateFromSTtoUEL = 0.138
+        static let RateFromUEL = 0.138
+    }
+    
+    func employerNIPerYear(annualSalary: Double) -> Double {
+        var runningTotal = 0.0
+        runningTotal += EmployerNIRatesAndLimits.RateBelowST * min(annualSalary,EmployerNIRatesAndLimits.SecondaryThreshold)
+        runningTotal += EmployerNIRatesAndLimits.RateFromSTtoUEL * (min(annualSalary,EmployerNIRatesAndLimits.UEL) - min(annualSalary,NIRatesAndLimits.SecondaryThreshold))
+        runningTotal += EmployerNIRatesAndLimits.RateFromUEL * (annualSalary - min(annualSalary,EmployerNIRatesAndLimits.UEL))
+        return runningTotal
+    }
+    
+    func employerNIPerMonth(monthlySalary: Double) -> Double {
+        return employerNIPerYear(monthlySalary * 12) / 12
+    }
+    
     func niPerYear(annualSalary: Double) -> Double {
         var runningTotal = 0.0
         runningTotal += NIRatesAndLimits.RateBelowLEL * min(annualSalary,NIRatesAndLimits.LEL)

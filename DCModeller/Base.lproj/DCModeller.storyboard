@@ -3508,31 +3508,70 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                 <rect key="frame" x="16" y="64" width="343" height="13.5"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ACv-BW-1T4" userLabel="InstructionsBox">
-                                <rect key="frame" x="16" y="77.5" width="343" height="66.5"/>
+                                <rect key="frame" x="16" y="77.5" width="343" height="93.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This box will set out instructions for completing the next input step, and then posibly the result at the end" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdo-H6-9Kf">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="66.5"/>
-                                        <fontDescription key="fontDescription" name="Arial-ItalicMT" family="Arial" pointSize="13"/>
+                                        <rect key="frame" x="17" y="2.5" width="309" height="65.5"/>
+                                        <fontDescription key="fontDescription" name="Arial-ItalicMT" family="Arial" pointSize="11.5"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HS2-lx-tJY">
+                                        <rect key="frame" x="17" y="72.5" width="69" height="18.5"/>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
+                                        <state key="normal" title="&lt; previous"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="changeInstructionPage:" destination="e5H-sl-N0z" eventType="touchUpInside" id="e0E-Ol-qe8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyC-IR-UWD">
+                                        <rect key="frame" x="257" y="72.5" width="69" height="18.5"/>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
+                                        <state key="normal" title="next &gt;"/>
+                                        <connections>
+                                            <action selector="changeInstructionPage:" destination="e5H-sl-N0z" eventType="touchUpInside" id="W9A-iN-wGE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="HS2-lx-tJY" firstAttribute="width" secondItem="ACv-BW-1T4" secondAttribute="width" multiplier="0.2" id="1AV-Vj-78k"/>
                                     <constraint firstItem="Qdo-H6-9Kf" firstAttribute="leading" secondItem="ACv-BW-1T4" secondAttribute="leading" id="3Q2-M3-chY"/>
+                                    <constraint firstItem="eyC-IR-UWD" firstAttribute="centerY" secondItem="HS2-lx-tJY" secondAttribute="centerY" id="C8H-HT-XGt"/>
                                     <constraint firstAttribute="trailing" secondItem="Qdo-H6-9Kf" secondAttribute="trailing" id="FZ2-at-xHt"/>
+                                    <constraint firstItem="Qdo-H6-9Kf" firstAttribute="width" secondItem="ACv-BW-1T4" secondAttribute="width" multiplier="0.9" id="FeJ-6M-dDt"/>
+                                    <constraint firstItem="Qdo-H6-9Kf" firstAttribute="centerY" secondItem="ACv-BW-1T4" secondAttribute="centerY" multiplier="0.75" id="HVY-dC-tQX"/>
+                                    <constraint firstItem="HS2-lx-tJY" firstAttribute="centerX" secondItem="ACv-BW-1T4" secondAttribute="centerX" multiplier="0.3" id="RLW-ut-NOd"/>
+                                    <constraint firstItem="HS2-lx-tJY" firstAttribute="centerY" secondItem="ACv-BW-1T4" secondAttribute="centerY" multiplier="1.75" id="ZBK-pM-HGm"/>
+                                    <constraint firstItem="eyC-IR-UWD" firstAttribute="centerX" secondItem="ACv-BW-1T4" secondAttribute="centerX" multiplier="1.7" id="fd4-50-Eyr"/>
+                                    <constraint firstItem="Qdo-H6-9Kf" firstAttribute="centerX" secondItem="ACv-BW-1T4" secondAttribute="centerX" id="kI1-C6-q6U"/>
+                                    <constraint firstItem="eyC-IR-UWD" firstAttribute="width" secondItem="HS2-lx-tJY" secondAttribute="width" id="oj3-ka-WS3"/>
+                                    <constraint firstItem="HS2-lx-tJY" firstAttribute="height" secondItem="ACv-BW-1T4" secondAttribute="height" multiplier="0.2" id="r27-CW-akB"/>
                                     <constraint firstAttribute="bottom" secondItem="Qdo-H6-9Kf" secondAttribute="bottom" id="tQN-f1-BZy"/>
+                                    <constraint firstItem="eyC-IR-UWD" firstAttribute="height" secondItem="HS2-lx-tJY" secondAttribute="height" id="wAM-oY-E68"/>
                                     <constraint firstItem="Qdo-H6-9Kf" firstAttribute="top" secondItem="ACv-BW-1T4" secondAttribute="top" id="yu4-4F-DrW"/>
+                                    <constraint firstItem="Qdo-H6-9Kf" firstAttribute="height" secondItem="ACv-BW-1T4" secondAttribute="height" multiplier="0.7" id="zPM-mW-PKI"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3Q2-M3-chY"/>
+                                        <exclude reference="FZ2-at-xHt"/>
+                                        <exclude reference="tQN-f1-BZy"/>
+                                        <exclude reference="yu4-4F-DrW"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Btp-6Q-Hz3" userLabel="Separator 2">
-                                <rect key="frame" x="16" y="144" width="343" height="13.5"/>
+                                <rect key="frame" x="16" y="171" width="343" height="13.5"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pT-ol-fho">
-                                <rect key="frame" x="0.0" y="157" width="375" height="509.5"/>
+                                <rect key="frame" x="0.0" y="184" width="375" height="482.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3z-Zs-QAm" userLabel="Separator A">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="6.5"/>
@@ -3696,7 +3735,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JvH-Iw-XxR" userLabel="Row 1">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
                                                 <subviews>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bXX-HX-mPK" customClass="SegmentedControlAlwaysValueChanged" customModule="F1rstPension" customModuleProvider="target">
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="bXX-HX-mPK" customClass="SegmentedControlAlwaysValueChanged" customModule="F1rstPension" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
                                                         <segments>
                                                             <segment title="Net Pay"/>
@@ -3739,7 +3778,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Employer NI payover" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-ae-d86">
-                                                                <rect key="frame" x="8" y="7" width="103.5" height="26"/>
+                                                                <rect key="frame" x="8" y="7" width="120" height="26"/>
                                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3747,35 +3786,25 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scc-4M-Lv8" userLabel="minusButton">
-                                                                <rect key="frame" x="117" y="7.5" width="25" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="OXj-Gw-AEI"/>
-                                                                    <constraint firstAttribute="width" constant="25" id="f8R-tG-OZa"/>
-                                                                </constraints>
-                                                                <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <state key="normal" image="minusInCircle"/>
-                                                                <connections>
-                                                                    <action selector="retirementAgeIncrementerPressed:" destination="UWc-43-E5O" eventType="touchUpInside" id="nmh-iT-ssL"/>
-                                                                </connections>
-                                                            </button>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="65" minValue="55" maxValue="75" translatesAutoresizingMaskIntoConstraints="NO" id="L9G-HL-cNn">
-                                                                <rect key="frame" x="148" y="5" width="106" height="31"/>
+                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="L9G-HL-cNn">
+                                                                <rect key="frame" x="164.5" y="5" width="82.5" height="31"/>
                                                                 <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <connections>
+                                                                    <action selector="niPayoverSliderValueChanged:" destination="e5H-sl-N0z" eventType="valueChanged" id="WN0-23-HbH"/>
                                                                     <action selector="retirementAgeSliderValueChanged:" destination="UWc-43-E5O" eventType="valueChanged" id="uRA-ls-MB8"/>
                                                                 </connections>
                                                             </slider>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRJ-mG-OJD" userLabel="plusButton">
-                                                                <rect key="frame" x="260" y="7.5" width="25" height="25"/>
+                                                                <rect key="frame" x="253" y="7.5" width="25" height="25"/>
                                                                 <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" image="plusInCircle"/>
                                                                 <connections>
+                                                                    <action selector="niPayoverIncrementerPressed:" destination="e5H-sl-N0z" eventType="touchUpInside" id="kv1-7R-cmd"/>
                                                                     <action selector="retirementAgeIncrementerPressed:" destination="UWc-43-E5O" eventType="touchUpInside" id="LN9-MN-pVP"/>
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x.x%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJc-Kq-acH">
-                                                                <rect key="frame" x="293" y="7" width="44.5" height="26"/>
+                                                                <rect key="frame" x="286" y="7" width="51.5" height="26"/>
                                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3783,6 +3812,19 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="scc-4M-Lv8" userLabel="minusButton">
+                                                                <rect key="frame" x="133.5" y="8" width="25" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="OXj-Gw-AEI"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="f8R-tG-OZa"/>
+                                                                </constraints>
+                                                                <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <state key="normal" image="minusInCircle"/>
+                                                                <connections>
+                                                                    <action selector="niPayoverIncrementerPressed:" destination="e5H-sl-N0z" eventType="touchUpInside" id="LEa-2h-PQ7"/>
+                                                                    <action selector="retirementAgeIncrementerPressed:" destination="UWc-43-E5O" eventType="touchUpInside" id="nmh-iT-ssL"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="L9G-HL-cNn" firstAttribute="leading" secondItem="scc-4M-Lv8" secondAttribute="trailing" constant="8" id="2t7-Fn-D0S"/>
@@ -3790,7 +3832,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                             <constraint firstItem="L9G-HL-cNn" firstAttribute="centerY" secondItem="lPW-PW-F4y" secondAttribute="centerY" id="9MR-Y7-jH7"/>
                                                             <constraint firstItem="rJc-Kq-acH" firstAttribute="leading" secondItem="SRJ-mG-OJD" secondAttribute="trailing" constant="8" id="FnL-lm-oGJ"/>
                                                             <constraint firstItem="SRJ-mG-OJD" firstAttribute="leading" secondItem="L9G-HL-cNn" secondAttribute="trailing" constant="8" id="HJK-Uf-ZuN"/>
-                                                            <constraint firstItem="0hf-ae-d86" firstAttribute="width" secondItem="lPW-PW-F4y" secondAttribute="width" multiplier="0.3" id="IBm-e8-LPa"/>
+                                                            <constraint firstItem="0hf-ae-d86" firstAttribute="width" secondItem="lPW-PW-F4y" secondAttribute="width" multiplier="0.35" id="IBm-e8-LPa"/>
                                                             <constraint firstAttribute="bottom" secondItem="rJc-Kq-acH" secondAttribute="bottom" constant="7" id="NkL-bq-7T7"/>
                                                             <constraint firstItem="0hf-ae-d86" firstAttribute="leading" secondItem="lPW-PW-F4y" secondAttribute="leading" constant="8" id="Osh-fM-Sbn"/>
                                                             <constraint firstItem="SRJ-mG-OJD" firstAttribute="width" secondItem="scc-4M-Lv8" secondAttribute="width" id="PY3-Zr-u4k"/>
@@ -3799,7 +3841,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                             <constraint firstAttribute="height" constant="40" id="fuN-K4-lwp"/>
                                                             <constraint firstItem="scc-4M-Lv8" firstAttribute="leading" secondItem="0hf-ae-d86" secondAttribute="trailing" constant="6" id="gso-rD-rWQ"/>
                                                             <constraint firstItem="rJc-Kq-acH" firstAttribute="top" secondItem="lPW-PW-F4y" secondAttribute="top" constant="7" id="h7z-VU-ABn"/>
-                                                            <constraint firstItem="rJc-Kq-acH" firstAttribute="width" secondItem="lPW-PW-F4y" secondAttribute="width" multiplier="0.13" id="ifz-aE-NOb"/>
+                                                            <constraint firstItem="rJc-Kq-acH" firstAttribute="width" secondItem="lPW-PW-F4y" secondAttribute="width" multiplier="0.15" id="ifz-aE-NOb"/>
                                                             <constraint firstAttribute="trailing" secondItem="rJc-Kq-acH" secondAttribute="trailing" constant="5" id="o8D-60-kyg"/>
                                                             <constraint firstItem="scc-4M-Lv8" firstAttribute="centerY" secondItem="lPW-PW-F4y" secondAttribute="centerY" id="o9V-p1-QPM"/>
                                                             <constraint firstItem="SRJ-mG-OJD" firstAttribute="centerY" secondItem="lPW-PW-F4y" secondAttribute="centerY" id="xtK-fR-0Ns"/>
@@ -3826,7 +3868,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                         <rect key="frame" x="16" y="255" width="343" height="20"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMq-G6-WJm" userLabel="ContCalcContainer">
-                                        <rect key="frame" x="16" y="275" width="343" height="112"/>
+                                        <rect key="frame" x="16" y="275" width="343" height="140"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UM6-4E-qnK" userLabel="Gross contributions Box">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
@@ -3893,7 +3935,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38B-QS-zIX" userLabel="Separator E and contsDetail">
-                                                <rect key="frame" x="0.0" y="28" width="343" height="56"/>
+                                                <rect key="frame" x="0.0" y="28" width="343" height="84"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87E-RV-huX" userLabel="Row 1">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
@@ -3908,7 +3950,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(£20.00)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tP-oQ-Wh6">
-                                                                <rect key="frame" x="282.5" y="7" width="52.5" height="14"/>
+                                                                <rect key="frame" x="282" y="7" width="52.5" height="14"/>
                                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3928,11 +3970,6 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                             <constraint firstItem="3tP-oQ-Wh6" firstAttribute="top" secondItem="87E-RV-huX" secondAttribute="top" constant="7" id="rpJ-Ic-max"/>
                                                             <constraint firstItem="pv3-Yd-PmD" firstAttribute="leading" secondItem="87E-RV-huX" secondAttribute="leading" constant="8" id="vxw-hq-qwT"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="K9F-Qe-PcD"/>
-                                                            </mask>
-                                                        </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLc-Jf-Fu9" userLabel="Row 2">
                                                         <rect key="frame" x="0.0" y="28" width="343" height="28"/>
@@ -3947,7 +3984,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(£12.00)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc3-Ro-EWU">
-                                                                <rect key="frame" x="282.5" y="7" width="52.5" height="14"/>
+                                                                <rect key="frame" x="282" y="7" width="52.5" height="14"/>
                                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3967,27 +4004,69 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                                             <constraint firstAttribute="bottom" secondItem="gc3-Ro-EWU" secondAttribute="bottom" constant="7" id="rPa-6z-ybn"/>
                                                             <constraint firstAttribute="trailing" secondItem="gc3-Ro-EWU" secondAttribute="trailing" constant="8" id="uHF-Y8-gbA"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="7lM-2z-FAS"/>
-                                                            </mask>
-                                                        </variation>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzJ-YG-W69" userLabel="Row 3">
+                                                        <rect key="frame" x="0.0" y="56" width="343" height="28"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tax to reclaim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-Qs-jIt">
+                                                                <rect key="frame" x="8" y="7" width="223" height="14"/>
+                                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(£0.00)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKZ-G3-JG0">
+                                                                <rect key="frame" x="290.5" y="7" width="44.5" height="14"/>
+                                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustFontToRealIPhoneSize" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="cPW-Qs-jIt" firstAttribute="leading" secondItem="tzJ-YG-W69" secondAttribute="leading" constant="8" id="8t2-tm-jF1"/>
+                                                            <constraint firstAttribute="bottom" secondItem="cPW-Qs-jIt" secondAttribute="bottom" constant="7" id="FVd-9i-QMn"/>
+                                                            <constraint firstItem="AKZ-G3-JG0" firstAttribute="top" secondItem="tzJ-YG-W69" secondAttribute="top" constant="7" id="Iv5-9w-D0A"/>
+                                                            <constraint firstAttribute="height" constant="28" id="ONo-6R-eah"/>
+                                                            <constraint firstAttribute="bottom" secondItem="AKZ-G3-JG0" secondAttribute="bottom" constant="7" id="Sxn-9u-cUc"/>
+                                                            <constraint firstAttribute="trailing" secondItem="AKZ-G3-JG0" secondAttribute="trailing" constant="8" id="jhR-zi-EUl"/>
+                                                            <constraint firstItem="cPW-Qs-jIt" firstAttribute="top" secondItem="tzJ-YG-W69" secondAttribute="top" constant="7" id="m6W-8a-xhk"/>
+                                                            <constraint firstItem="cPW-Qs-jIt" firstAttribute="width" secondItem="tzJ-YG-W69" secondAttribute="width" multiplier="0.65" id="v03-tz-Syc"/>
+                                                            <constraint firstItem="AKZ-G3-JG0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cPW-Qs-jIt" secondAttribute="trailing" constant="5" id="xqy-aL-4Kr"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="tzJ-YG-W69" firstAttribute="leading" secondItem="38B-QS-zIX" secondAttribute="leading" id="0ae-OK-L0p"/>
                                                     <constraint firstItem="87E-RV-huX" firstAttribute="top" secondItem="38B-QS-zIX" secondAttribute="top" id="1aH-Xc-puW"/>
                                                     <constraint firstItem="SLc-Jf-Fu9" firstAttribute="leading" secondItem="38B-QS-zIX" secondAttribute="leading" id="4KJ-Is-3Pg"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tzJ-YG-W69" secondAttribute="bottom" id="Hcc-EV-T3e"/>
                                                     <constraint firstItem="87E-RV-huX" firstAttribute="leading" secondItem="38B-QS-zIX" secondAttribute="leading" id="MTG-uI-jyc"/>
-                                                    <constraint firstAttribute="height" constant="56" id="SxQ-Nm-VEO"/>
+                                                    <constraint firstAttribute="height" constant="84" id="SxQ-Nm-VEO"/>
+                                                    <constraint firstItem="tzJ-YG-W69" firstAttribute="top" secondItem="SLc-Jf-Fu9" secondAttribute="bottom" id="Tfi-rF-n2m"/>
                                                     <constraint firstItem="SLc-Jf-Fu9" firstAttribute="top" secondItem="87E-RV-huX" secondAttribute="bottom" id="aNt-4N-Sa9"/>
                                                     <constraint firstAttribute="trailing" secondItem="SLc-Jf-Fu9" secondAttribute="trailing" id="epx-JH-1Ge"/>
                                                     <constraint firstItem="SLc-Jf-Fu9" firstAttribute="height" secondItem="87E-RV-huX" secondAttribute="height" id="gzr-DH-DoO"/>
                                                     <constraint firstAttribute="bottom" secondItem="SLc-Jf-Fu9" secondAttribute="bottom" id="koc-tH-5Vm"/>
                                                     <constraint firstAttribute="trailing" secondItem="87E-RV-huX" secondAttribute="trailing" id="nIG-3Z-SDH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tzJ-YG-W69" secondAttribute="trailing" id="r1C-ln-EUP"/>
+                                                    <constraint firstItem="tzJ-YG-W69" firstAttribute="height" secondItem="87E-RV-huX" secondAttribute="height" id="yaz-U5-kjh"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="SxQ-Nm-VEO"/>
+                                                        <exclude reference="gzr-DH-DoO"/>
+                                                        <exclude reference="koc-tH-5Vm"/>
+                                                        <exclude reference="yaz-U5-kjh"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sec-gu-ESD" userLabel="Net Pension Cost Box">
-                                                <rect key="frame" x="0.0" y="84" width="343" height="28"/>
+                                                <rect key="frame" x="0.0" y="112" width="343" height="28"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOA-qX-oyd" userLabel="Row 1">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
@@ -4058,10 +4137,10 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOW-zf-X5e" userLabel="Separator F">
-                                        <rect key="frame" x="0.0" y="387" width="375" height="20"/>
+                                        <rect key="frame" x="0.0" y="415" width="375" height="20"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHm-MR-o14" userLabel="CashIntoPotBox">
-                                        <rect key="frame" x="16" y="407" width="343" height="111.5"/>
+                                        <rect key="frame" x="16" y="435" width="343" height="111.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ByP-3q-lVu" userLabel="Detail Row 1">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
@@ -4234,7 +4313,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3s-0y-5ea" userLabel="Separator G">
-                                        <rect key="frame" x="16" y="519" width="343" height="10"/>
+                                        <rect key="frame" x="16" y="547" width="343" height="10"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -4370,7 +4449,7 @@ You life expectancy is estimated from your date of birth and gender only, using 
                             <constraint firstAttribute="trailingMargin" secondItem="Btp-6Q-Hz3" secondAttribute="trailing" id="leh-dn-fen"/>
                             <constraint firstItem="gPo-R7-Vg9" firstAttribute="leading" secondItem="rkF-Yt-JLc" secondAttribute="leadingMargin" id="m33-ry-d7l"/>
                             <constraint firstItem="ceu-wv-bkc" firstAttribute="width" secondItem="rkF-Yt-JLc" secondAttribute="width" multiplier="0.4" id="m5a-cq-hxE"/>
-                            <constraint firstItem="ACv-BW-1T4" firstAttribute="height" secondItem="rkF-Yt-JLc" secondAttribute="height" multiplier="0.1" id="mTM-Rt-pdo"/>
+                            <constraint firstItem="ACv-BW-1T4" firstAttribute="height" secondItem="rkF-Yt-JLc" secondAttribute="height" multiplier="0.14" id="mTM-Rt-pdo"/>
                             <constraint firstItem="Axv-Ji-Rjr" firstAttribute="height" secondItem="rkF-Yt-JLc" secondAttribute="height" multiplier="0.03" id="n4q-Xz-VNS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Pv-mv-P6I" secondAttribute="trailing" id="nqb-Fi-QWg"/>
                             <constraint firstItem="4Pv-mv-P6I" firstAttribute="leading" secondItem="rkF-Yt-JLc" secondAttribute="leadingMargin" id="oIo-Nn-9rG"/>
@@ -4411,18 +4490,31 @@ You life expectancy is estimated from your date of birth and gender only, using 
                         <outlet property="cashIntoPotDetailRow3Height" destination="fis-en-a3x" id="3au-HY-nUn"/>
                         <outlet property="cashIntoPotResultRowHeight" destination="ScB-yn-Pyv" id="0Ym-my-7ff"/>
                         <outlet property="contCalcContainer" destination="PMq-G6-WJm" id="cYT-Ih-NzM"/>
+                        <outlet property="contributionCalcRow1Height" destination="K9F-Qe-PcD" id="ojM-7Z-QG7"/>
+                        <outlet property="contributionCalcRow2Height" destination="7lM-2z-FAS" id="gkg-Gl-WTa"/>
+                        <outlet property="contributionCalcRow3Height" destination="ONo-6R-eah" id="rNx-jd-tF3"/>
                         <outlet property="contributionMethodBoxHeight" destination="NHy-bc-mNi" id="SOb-R1-yl5"/>
                         <outlet property="contributionMethodSelector" destination="bXX-HX-mPK" id="WXI-pD-PdA"/>
                         <outlet property="employeeContPicker" destination="vtP-QV-5ok" id="vEa-o7-GTB"/>
                         <outlet property="employerContPicker" destination="YM0-rC-R1M" id="SMP-wa-QRW"/>
+                        <outlet property="employerContributionsIntoPotLabel" destination="KcE-II-RTh" id="54t-wo-pYX"/>
                         <outlet property="grossContributionsBoxHeight" destination="mxm-k3-48V" id="aaj-41-MkI"/>
                         <outlet property="grossContsBox" destination="UM6-4E-qnK" id="osG-6q-E41"/>
                         <outlet property="grossMonthlyContributionsLabel" destination="aJi-aP-kKP" id="av6-jw-Gkf"/>
+                        <outlet property="incomeTaxSavingLabel" destination="3tP-oQ-Wh6" id="tcM-jU-SDk"/>
+                        <outlet property="instructionsBoxLabel" destination="Qdo-H6-9Kf" id="Vso-rY-RFY"/>
+                        <outlet property="memberContributionsIntoPotLabel" destination="kFa-8v-AOE" id="Aoh-Fb-tbH"/>
                         <outlet property="netContributionsBoxHeight" destination="w9F-HV-rui" id="QBb-nb-8Jb"/>
                         <outlet property="netContsBox" destination="sec-gu-ESD" id="blo-G0-ESY"/>
+                        <outlet property="netPensionCostLabel" destination="rRe-fd-Hkc" id="xrC-kE-dqn"/>
                         <outlet property="niPayoverBoxHeight" destination="fuN-K4-lwp" id="trt-Pp-EYV"/>
+                        <outlet property="niPayoverIntoPotLabel" destination="CzM-GB-rwN" id="Y02-Bz-3oe"/>
+                        <outlet property="niPayoverProportionLabel" destination="rJc-Kq-acH" id="9RB-1S-s6u"/>
+                        <outlet property="niPayoverSlider" destination="L9G-HL-cNn" id="ZzZ-Pu-kZQ"/>
+                        <outlet property="niSavingLabel" destination="gc3-Ro-EWU" id="K4d-Vn-6QL"/>
                         <outlet property="separatorEOrContDetails" destination="38B-QS-zIX" id="e4U-WB-LiI"/>
-                        <outlet property="separatorE_or_contDetails_height" destination="SxQ-Nm-VEO" id="b6D-1u-ioo"/>
+                        <outlet property="taxToReclaimLabel" destination="AKZ-G3-JG0" id="kSS-wE-Dg4"/>
+                        <outlet property="totalIntoPotLabel" destination="aoB-WO-zWd" id="Vh4-Sa-vE0"/>
                         <outletCollection property="viewsToRound" destination="ceu-wv-bkc" collectionClass="NSMutableArray" id="GSN-E5-4J5"/>
                         <outletCollection property="viewsToRound" destination="gPo-R7-Vg9" collectionClass="NSMutableArray" id="YJJ-nP-NO2"/>
                         <outletCollection property="viewsToRound" destination="4Pv-mv-P6I" collectionClass="NSMutableArray" id="kL5-Do-nMV"/>
