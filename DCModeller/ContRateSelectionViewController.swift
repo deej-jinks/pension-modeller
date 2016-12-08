@@ -32,7 +32,7 @@ class ContRateSelectionViewController: UIViewController, UIPickerViewDataSource,
         didSet {
             for box in contentBoxes {
                 box.layer.cornerRadius = cornerRadius
-                box.layer.shadowColor = UIColor.blackColor().CGColor
+                box.layer.shadowColor = UIColor.black.cgColor
                 box.layer.shadowOpacity = 0.4
                 box.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }
@@ -41,7 +41,7 @@ class ContRateSelectionViewController: UIViewController, UIPickerViewDataSource,
     
     var pickerData = GlobalConstants.ContributionRateIncrements
     
-    func rowForValue(value: Double) -> Int {
+    func rowForValue(_ value: Double) -> Int {
         var r = 0
         for i in 0..<pickerData.count {
             if value == pickerData[i] {
@@ -62,38 +62,38 @@ class ContRateSelectionViewController: UIViewController, UIPickerViewDataSource,
 
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData.count
     }
     
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let l = UILabel()
 
         let percentFormatter = createPercentageNumberFormatter()
-        l.text = percentFormatter.stringFromNumber(pickerData[row])
+        l.text = percentFormatter.string(from: pickerData[row])
 
-        l.textAlignment = NSTextAlignment.Center
+        l.textAlignment = NSTextAlignment.center
         l.backgroundColor = GlobalConstants.ColorPalette.SecondaryColorDark
         l.font = UIFont(name: "Arial", size: 14.0)
-        l.textColor = UIColor.blackColor()
+        l.textColor = UIColor.black
         l.layer.cornerRadius = 5.0
         l.clipsToBounds = true
         return l
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         currentDCPension?.totalContributionRate = Double(pickerData[row])
         if let salary = currentUser!.salary {
             let monthlyConts = Double(salary) * Double(currentDCPension!.totalContributionRate!) / 12
             let formatter = createNumberFormatter(maxValue: 1000.0, prefix: "£")
-            infoText.text = "Based on the salary figure you have entered,\nthat is around " + formatter.stringFromNumber(monthlyConts)! + " per month (gross)"
-            UIView.animateWithDuration(0.5) {
+            infoText.text = "Based on the salary figure you have entered,\nthat is around " + formatter.string(from: monthlyConts)! + " per month (gross)"
+            UIView.animate(withDuration: 0.5, animations: {
                 self.infoBox.alpha = 1.0
-            }
+            }) 
         }
     }
 

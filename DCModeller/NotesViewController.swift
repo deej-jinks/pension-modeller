@@ -16,7 +16,7 @@ class NotesViewController: UIViewController {
         didSet {
             for view in viewsToRound {
                 view.layer.cornerRadius = cornerRadius
-                view.layer.shadowColor = UIColor.blackColor().CGColor
+                view.layer.shadowColor = UIColor.black.cgColor
                 view.layer.shadowOpacity = 0.4
                 view.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }

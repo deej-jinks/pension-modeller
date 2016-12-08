@@ -78,13 +78,13 @@ class LoginScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rememberMeCheckbox.isChecked = NSUserDefaults.standardUserDefaults().boolForKey("DCModeller Remember Me")
+        rememberMeCheckbox.isChecked = UserDefaults.standard.bool(forKey: "DCModeller Remember Me")
         addRememberedPasswords()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginScreenViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object:  nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginScreenViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object:  nil)
         
         self.view.layoutIfNeeded()
-        UIView.transitionWithView(staticBackround, duration: 4.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+        UIView.transition(with: staticBackround, duration: 4.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
             self.staticBackround.alpha = 0.0
             }, completion: nil)
         doLogoAnimations()
@@ -93,39 +93,39 @@ class LoginScreenViewController: UIViewController {
     
     func updateRememberMe() {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(self.rememberMeCheckbox.isChecked, forKey: "DCModeller Remember Me")
+        let defaults = UserDefaults.standard
+        defaults.set(self.rememberMeCheckbox.isChecked, forKey: "DCModeller Remember Me")
         if rememberMeCheckbox.isChecked {
-            defaults.setObject(self.usernameTextField.text!, forKey: "DCModeller Username")
-            defaults.setObject(self.passwordTextField.text!, forKey: "DCModeller Password")
+            defaults.set(self.usernameTextField.text!, forKey: "DCModeller Username")
+            defaults.set(self.passwordTextField.text!, forKey: "DCModeller Password")
         } else {
-            defaults.setObject("", forKey: "DCModeller Username")
-            defaults.setObject("", forKey: "DCModeller Password")
+            defaults.set("", forKey: "DCModeller Username")
+            defaults.set("", forKey: "DCModeller Password")
         }
     }
     
     func addRememberedPasswords() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let user = defaults.objectForKey("DCModeller Username") as? String {
+        let defaults = UserDefaults.standard
+        if let user = defaults.object(forKey: "DCModeller Username") as? String {
             if user != "" {
                 usernameTextField.text = user
             }
         }
-        if let pass = defaults.objectForKey("DCModeller Password") as? String {
+        if let pass = defaults.object(forKey: "DCModeller Password") as? String {
             if pass != "" {
                 passwordTextField.text = pass
             }
         }
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         var info = notification.userInfo!
-        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        UIView.animateWithDuration(0.1) { () -> Void in
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
             self.bottomConstraint.constant = keyboardFrame.size.height + 20
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
     
     func setupEmitters() {
@@ -134,10 +134,10 @@ class LoginScreenViewController: UIViewController {
         let width = Double(view.bounds.size.width)
         
         let sceneToPresent = SKScene(size: view.bounds.size)
-        sceneToPresent.anchorPoint = CGPointZero
+        sceneToPresent.anchorPoint = CGPoint.zero
         sceneToPresent.name = "Particle Scene"
-        sceneToPresent.scaleMode = .ResizeFill
-        sceneToPresent.backgroundColor = UIColor.clearColor()
+        sceneToPresent.scaleMode = .resizeFill
+        sceneToPresent.backgroundColor = UIColor.clear
         
         
         let sideEmitters = Int(view.frame.height / 100)
@@ -160,7 +160,7 @@ class LoginScreenViewController: UIViewController {
             default: emitter?.particleTexture = SKTexture(imageNamed: "number0.png")
             }
             
-            emitter!.position = CGPointMake(CGFloat(50 - 200 * fraction ), CGFloat(height - (height * fraction) ) );
+            emitter!.position = CGPoint(x: CGFloat(50 - 200 * fraction ), y: CGFloat(height - (height * fraction) ) );
             
             sceneToPresent.addChild(emitter!)
         }
@@ -182,7 +182,7 @@ class LoginScreenViewController: UIViewController {
             default: emitter?.particleTexture = SKTexture(imageNamed: "number0.png")
             }
             
-            emitter!.position = CGPointMake(CGFloat(width * fraction), CGFloat(height - 50 + 200 * fraction));
+            emitter!.position = CGPoint(x: CGFloat(width * fraction), y: CGFloat(height - 50 + 200 * fraction));
             
             sceneToPresent.addChild(emitter!)
         }
@@ -194,7 +194,7 @@ class LoginScreenViewController: UIViewController {
     func doLogoAnimations() {
         //bring in circle
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(0.5, delay: 0.2, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0.2, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             
             self.execLogoYConstraint.constant = 0.0
             self.view.layoutIfNeeded()
@@ -203,7 +203,7 @@ class LoginScreenViewController: UIViewController {
         
         //bring in exec logo
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(0.8, delay: 0.7, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+        UIView.animate(withDuration: 0.8, delay: 0.7, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
             self.execLogo.alpha = 1.0
             self.execLogoXOffset.constant = 0.0
             self.execLogoWidthConstraint.constant = 89.0
@@ -213,7 +213,7 @@ class LoginScreenViewController: UIViewController {
         
         //twinkle grow
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(0.3, delay: 1.7, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, delay: 1.7, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             
             self.sparkleHeightConstraint.constant = 50.0
             self.view.layoutIfNeeded()
@@ -222,7 +222,7 @@ class LoginScreenViewController: UIViewController {
         
         //twinkle shrink
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(0.3, delay: 2.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, delay: 2.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             
             self.sparkleHeightConstraint.constant = 25.0
             self.view.layoutIfNeeded()
@@ -230,18 +230,18 @@ class LoginScreenViewController: UIViewController {
             }, completion: nil)
     }
     
-    @IBAction func loginAttempt(sender: UIButton) {
+    @IBAction func loginAttempt(_ sender: UIButton) {
         
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         
-        if passwordTextField.text?.lowercaseString == Constants.Password {
+        if passwordTextField.text?.lowercased() == Constants.Password {
             
             //check for user record
-            let request = NSFetchRequest(entityName: "User")
-            request.predicate = NSPredicate(format: "name == %@", (usernameTextField.text?.lowercaseString)!)
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+            request.predicate = NSPredicate(format: "name == %@", (usernameTextField.text?.lowercased())!)
             do {
-                let result = try AppDelegate.getContext().executeFetchRequest(request) as! [User]
+                let result = try AppDelegate.getContext().fetch(request) as! [User]
                 if let existingUser = result.first {
                     print("user record found : \(existingUser)")
                     print("user has accepted TsCs : \(Bool(existingUser.acceptedTsCs!))")
@@ -250,8 +250,8 @@ class LoginScreenViewController: UIViewController {
                     currentDCPension = existingUser.dcPension
                 } else {
                     print("user record not found")
-                    createNewUserRecord((usernameTextField.text?.lowercaseString)!)
-                    createNewDCPensionRecord((usernameTextField.text?.lowercaseString)!)
+                    createNewUserRecord((usernameTextField.text?.lowercased())!)
+                    createNewDCPensionRecord((usernameTextField.text?.lowercased())!)
                 }
                 
             } catch {}
@@ -264,7 +264,7 @@ class LoginScreenViewController: UIViewController {
             
             //AppDelegate.getDelegate().saveContext()
             
-            self.performSegueWithIdentifier("LoginSegue", sender: self)
+            self.performSegue(withIdentifier: "LoginSegue", sender: self)
             
             updateRememberMe()
             
@@ -272,7 +272,7 @@ class LoginScreenViewController: UIViewController {
             let alert = UIAlertView()
             alert.title = "Incorrect username and password combination"
             alert.message = "Please enter a correct username and password combination."
-            alert.addButtonWithTitle("OK")
+            alert.addButton(withTitle: "OK")
             alert.show()
         }
         
@@ -283,8 +283,8 @@ class LoginScreenViewController: UIViewController {
             
 
     
-    func createNewUserRecord(name: String) {
-        let request = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: AppDelegate.getContext()) as! User
+    func createNewUserRecord(_ name: String) {
+        let request = NSEntityDescription.insertNewObject(forEntityName: "User", into: AppDelegate.getContext()) as! User
         print("inserting user, name : \(name)")
         request.name = name
         request.dateOfBirth = nil
@@ -297,8 +297,8 @@ class LoginScreenViewController: UIViewController {
         currentUser = request
     }
     
-    func createNewDCPensionRecord(name: String) {
-        let request = NSEntityDescription.insertNewObjectForEntityForName("DCPension", inManagedObjectContext: AppDelegate.getContext()) as! DCPension
+    func createNewDCPensionRecord(_ name: String) {
+        let request = NSEntityDescription.insertNewObject(forEntityName: "DCPension", into: AppDelegate.getContext()) as! DCPension
         print("inserting dcpension, name : \(name)")
         request.name = name
         request.currentFundValue = nil

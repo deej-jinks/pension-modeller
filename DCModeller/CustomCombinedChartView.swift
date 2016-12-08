@@ -72,7 +72,7 @@ class CustomCombinedChartView: CombinedChartView {
     }
     
     
-    func setCombinedChart(xValues: [String], barValues: [Double], lineValues: [Double], barValueUnit: String, lineValueUnit: String, maxBarValue: Double, maxLineValue: Double, verticalLimit: Double) -> Void {
+    func setCombinedChart(_ xValues: [String], barValues: [Double], lineValues: [Double], barValueUnit: String, lineValueUnit: String, maxBarValue: Double, maxLineValue: Double, verticalLimit: Double) -> Void {
         
         var yVals1 = [BarChartDataEntry]()
         var yVals2 = [ChartDataEntry]()
@@ -126,7 +126,7 @@ class CustomCombinedChartView: CombinedChartView {
         
     }
     
-    func roundUpForAxisMax(highestValue: Double) -> Double {
+    func roundUpForAxisMax(_ highestValue: Double) -> Double {
         switch highestValue {
         case 0..<10000: return 10000
         case 0..<20000: return 20000

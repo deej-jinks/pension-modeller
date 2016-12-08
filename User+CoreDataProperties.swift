@@ -14,7 +14,7 @@ import CoreData
 
 extension User {
 
-    @NSManaged var dateOfBirth: NSDate?
+    @NSManaged var dateOfBirth: Date?
     @NSManaged var isMale: NSNumber?
     @NSManaged var name: String?
     @NSManaged var priceInflation: NSNumber?

@@ -19,7 +19,7 @@ class constrainedLabel: UILabel {
 
 public func getFontScalingForScreenSize() -> CGFloat {
     var sizeScale: CGFloat = 1
-    let height = max(UIScreen.mainScreen().bounds.height, UIScreen.mainScreen().bounds.width)
+    let height = max(UIScreen.main.bounds.height, UIScreen.main.bounds.width)
     switch height {
     //iPhone 4 or smaller
     case 0.0 ..< 500.0: sizeScale = 0.75
@@ -40,7 +40,7 @@ public func getFontScalingForScreenSize() -> CGFloat {
 public func getFontScalingForScreenSizeNotUsed() -> CGFloat {
     
     var sizeScale: CGFloat = 1
-    if let screen = UIDevice.currentDevice().screenType {
+    if let screen = UIDevice.current.screenType {
         switch screen {
         case "iPhone4":
             sizeScale = 0.75
@@ -67,7 +67,7 @@ extension UILabel {
         set {
             if newValue {
                 let currentFont = self.font
-                self.font = currentFont.fontWithSize(currentFont.pointSize * getFontScalingForScreenSize())
+                self.font = currentFont?.withSize((currentFont?.pointSize)! * getFontScalingForScreenSize())
             }
         }
         
@@ -98,7 +98,7 @@ extension UITextView {
         set {
             if newValue {
                 let currentFont = self.font
-                self.font = currentFont?.fontWithSize((currentFont?.pointSize)! * getFontScalingForScreenSize())
+                self.font = currentFont?.withSize((currentFont?.pointSize)! * getFontScalingForScreenSize())
             }
         }
         
@@ -115,7 +115,7 @@ extension UITextField {
         set {
             if newValue {
                 let currentFont = self.font
-                self.font = currentFont?.fontWithSize((currentFont?.pointSize)! * getFontScalingForScreenSize())
+                self.font = currentFont?.withSize((currentFont?.pointSize)! * getFontScalingForScreenSize())
             }
         }
         
@@ -128,12 +128,12 @@ extension UITextField {
 
 public extension UIDevice {
     var iPhone: Bool {
-        return UIDevice().userInterfaceIdiom == .Phone
+        return UIDevice().userInterfaceIdiom == .phone
     }
     
     var screenType: String? {
         guard iPhone else { return nil }
-        switch UIScreen.mainScreen().nativeBounds.height {
+        switch UIScreen.main.nativeBounds.height {
         case 960:
             return "iPhone4"
         case 1136:

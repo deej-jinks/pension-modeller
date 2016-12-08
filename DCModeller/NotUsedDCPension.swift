@@ -15,8 +15,8 @@ class NotUsedUser {
     var age: Int
     var gender: Gender
     enum Gender {
-        case Male
-        case Female
+        case male
+        case female
     }
     var salary: Double
     var dcPension = DCPension()
@@ -24,7 +24,7 @@ class NotUsedUser {
     init() {
         //load from store, but for now, load dummy data
         age = 40
-        gender = .Male
+        gender = .male
         salary = 50000
     }
 }

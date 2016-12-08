@@ -31,7 +31,7 @@ class GenderSelectionViewController: UIViewController {
         didSet {
             for box in contentBoxes {
                 box.layer.cornerRadius = cornerRadius
-                box.layer.shadowColor = UIColor.blackColor().CGColor
+                box.layer.shadowColor = UIColor.black.cgColor
                 box.layer.shadowOpacity = 0.4
                 box.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }
@@ -43,7 +43,7 @@ class GenderSelectionViewController: UIViewController {
 
     }
 
-    @IBAction func genderSelectionChanged(sender: UISegmentedControl) {
+    @IBAction func genderSelectionChanged(_ sender: UISegmentedControl) {
         currentUser!.isMale = sender.selectedSegmentIndex == 0
     }
 }

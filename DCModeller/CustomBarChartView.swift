@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Charts
+import
 
 class CustomBarChartView: BarChartView {
     //var cornerRadius: CGFloat = 5.0
@@ -70,7 +70,7 @@ class CustomBarChartView: BarChartView {
     }
     
 
-    func setFundvalueBarChart(labels labels: [String], values: [Double], maxValue: Double, limitLine: Double) {
+    func setFundvalueBarChart(labels: [String], values: [Double], maxValue: Double, limitLine: Double) {
         
         self.leftAxis.axisMaxValue = roundUpForAxisMax(maxValue)
         
@@ -116,7 +116,7 @@ class CustomBarChartView: BarChartView {
         setNeedsDisplay()
     }
     
-    func setAnnuityIncomeBarChart(labels labels: [String], values: [Double], maxValue: Double, limitLine: Double) {
+    func setAnnuityIncomeBarChart(labels: [String], values: [Double], maxValue: Double, limitLine: Double) {
         
         self.leftAxis.axisMaxValue = roundUpForAxisMax(maxValue)
 
@@ -170,7 +170,7 @@ class CustomBarChartView: BarChartView {
     }
 
     
-    func roundUpForAxisMax(highestValue: Double) -> Double {
+    func roundUpForAxisMax(_ highestValue: Double) -> Double {
         switch highestValue {
         case 0..<10000: return 10000
         case 0..<20000: return 20000

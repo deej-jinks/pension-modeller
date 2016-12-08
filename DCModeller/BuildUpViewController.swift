@@ -42,7 +42,7 @@ class BuildUpViewController: UIViewController {
     @IBOutlet weak var fvWarningTriangle: UIButton! {
         didSet {
             fvWarningTriangle.alpha = 0.0
-            fvWarningTriangle.userInteractionEnabled = false
+            fvWarningTriangle.isUserInteractionEnabled = false
         }
     }
     
@@ -65,7 +65,7 @@ class BuildUpViewController: UIViewController {
         didSet {
             for box in contentBoxes {
                 box.layer.cornerRadius = cornerRadius
-                box.layer.shadowColor = UIColor.blackColor().CGColor
+                box.layer.shadowColor = UIColor.black.cgColor
                 box.layer.shadowOpacity = 0.4
                 box.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }
@@ -84,7 +84,7 @@ class BuildUpViewController: UIViewController {
         } catch {}
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         initialiseUI()
     }
 
@@ -92,7 +92,7 @@ class BuildUpViewController: UIViewController {
         if currentDCPension!.selectedRetirementAge == nil {
             currentDCPension!.selectedRetirementAge = max(65,currentUser!.ageNearest)
         } else if Int(currentDCPension!.selectedRetirementAge!) < currentUser!.ageNearest {
-            currentDCPension!.selectedRetirementAge = currentUser!.ageNearest
+            currentDCPension!.selectedRetirementAge = currentUser!.ageNearest as NSNumber?
         }
         retirementAgeSlider.minimumValue = Float(max(55,currentUser!.ageNearest))
         retirementAgeSlider.value = Float(currentDCPension!.selectedRetirementAge!)
@@ -117,34 +117,34 @@ class BuildUpViewController: UIViewController {
     func updateUI() {
         
         let percentFormatter = createPercentageNumberFormatter()
-        inflationButton.setTitle(percentFormatter.stringFromNumber(assumptionsSlider.value), forState: .Normal)
+        inflationButton.setTitle(percentFormatter.string(from: assumptionsSlider.value), for: UIControlState())
         let formatter = createNumberFormatter(maxValue: currentDCPension!.fundValueAtRetirement, prefix: "£")
 
         
-        inflationButton.setTitle(percentFormatter.stringFromNumber(currentUser!.priceInflation!), forState: .Normal)
-        salaryInflationButton.setTitle(percentFormatter.stringFromNumber(currentUser!.salaryInflation!), forState: .Normal)
-        investmentReturnButton.setTitle(percentFormatter.stringFromNumber(currentDCPension!.investmentReturnsPreRetirement!), forState: .Normal)
+        inflationButton.setTitle(percentFormatter.string(from: currentUser!.priceInflation!), for: UIControlState())
+        salaryInflationButton.setTitle(percentFormatter.string(from: currentUser!.salaryInflation!), for: UIControlState())
+        investmentReturnButton.setTitle(percentFormatter.string(from: currentDCPension!.investmentReturnsPreRetirement!), for: UIControlState())
     
         
-        retirementFVLabel.text = "  Retirement Fund Value : " + formatter.stringFromNumber(currentDCPension!.fundValueAtRetirement)! + "        "
+        retirementFVLabel.text = "  Retirement Fund Value : " + formatter.string(from: currentDCPension!.fundValueAtRetirement)! + "        "
         
         if (ltaBreached || aaBreached) && fvWarningTriangle.alpha == 0.0 {
-            UIView.animateWithDuration(0.5, animations: { 
+            UIView.animate(withDuration: 0.5, animations: { 
                 self.fvWarningTriangle.alpha = 1.0
-                self.fvWarningTriangle.userInteractionEnabled = true
+                self.fvWarningTriangle.isUserInteractionEnabled = true
             })
         } else if !ltaBreached && !aaBreached && fvWarningTriangle.alpha != 0.0 {
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.fvWarningTriangle.alpha = 0.0
-                self.fvWarningTriangle.userInteractionEnabled = false
+                self.fvWarningTriangle.isUserInteractionEnabled = false
             })
         }
         
-        retirementAgeLabel.text = String(currentDCPension!.selectedRetirementAge!)
+        retirementAgeLabel.text = String(describing: currentDCPension!.selectedRetirementAge!)
         
         percentFormatter.maximumSignificantDigits = 2
         percentFormatter.minimumSignificantDigits = 2
-        contributionsLabel.text = percentFormatter.stringFromNumber(currentDCPension!.totalContributionRate!)
+        contributionsLabel.text = percentFormatter.string(from: currentDCPension!.totalContributionRate!)
         
          //print("fund values : \(currentDCPension!.preRetirementFundValues)")
         drawGraph()
@@ -154,13 +154,13 @@ class BuildUpViewController: UIViewController {
         fundvalueChartView.setFundvalueBarChart(labels: currentUser!.agesTo75AsStrings, values: currentDCPension!.preRetirementFundValues, maxValue: currentDCPension!.fundValueAt75, limitLine: Double(currentDCPension!.selectedRetirementAge!) - Double(currentUser!.ageNearest))
     }
     
-    @IBAction func contributionsSliderValueChanged(sender: AnyObject) {
+    @IBAction func contributionsSliderValueChanged(_ sender: AnyObject) {
         contributionsSlider.value = Float(Int(contributionsSlider.value * 200 + 0.5)) / 200.0
-        currentDCPension!.totalContributionRate = GlobalConstants.ContributionRateIncrements[Int(contributionsSlider.value)]
+        currentDCPension!.totalContributionRate = GlobalConstants.ContributionRateIncrements[Int(contributionsSlider.value)] as NSNumber?
         updateUI()
     }
     
-    @IBAction func contributionsIncrementerPressed(sender: UIButton) {
+    @IBAction func contributionsIncrementerPressed(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             contributionsSlider.value -= 1
@@ -172,13 +172,13 @@ class BuildUpViewController: UIViewController {
         }
     }
     
-    @IBAction func retirementAgeSliderValueChanged(sender: AnyObject) {
+    @IBAction func retirementAgeSliderValueChanged(_ sender: AnyObject) {
         retirementAgeSlider.value = Float(Int(retirementAgeSlider.value + 0.5))
-        currentDCPension!.selectedRetirementAge = retirementAgeSlider.value
+        currentDCPension!.selectedRetirementAge = retirementAgeSlider.value as NSNumber?
         updateUI()
     }
     
-    @IBAction func retirementAgeIncrementerPressed(sender: UIButton) {
+    @IBAction func retirementAgeIncrementerPressed(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             retirementAgeSlider.value -= 1
@@ -191,28 +191,28 @@ class BuildUpViewController: UIViewController {
         updateUI()
     }
 
-    @IBAction func assumptionsSliderValueChanged(sender: AnyObject) {
+    @IBAction func assumptionsSliderValueChanged(_ sender: AnyObject) {
         assumptionsSlider.value = Float(Int(assumptionsSlider.value * 200 + 0.5)) / 200.0
         switch activeAssumption {
-        case 0: currentUser!.priceInflation = Double(assumptionsSlider.value)
-        case 1: currentUser!.salaryInflation = Double(assumptionsSlider.value)
-        case 2: currentDCPension!.investmentReturnsPreRetirement = Double(assumptionsSlider.value)
+        case 0: currentUser!.priceInflation = Double(assumptionsSlider.value) as NSNumber?
+        case 1: currentUser!.salaryInflation = Double(assumptionsSlider.value) as NSNumber?
+        case 2: currentDCPension!.investmentReturnsPreRetirement = Double(assumptionsSlider.value) as NSNumber?
         default: break
         }
         
         updateUI()
     }
     
-    @IBAction func assumptionButtonPressed(sender: UIButton) {
+    @IBAction func assumptionButtonPressed(_ sender: UIButton) {
         print("assumption button pressed. Screen size : \(view.frame.height) by \(view.frame.width)")
         
         activeAssumption = sender.tag
         for button in assumptionButtons {
             if button.tag == sender.tag {
-                button.setBackgroundImage(UIImage(named: "orangeBall"), forState: .Normal)
+                button.setBackgroundImage(UIImage(named: "orangeBall"), for: UIControlState())
                 button.tintColor = GlobalConstants.ColorPalette.SecondaryColorLight
             } else {
-                button.setBackgroundImage(UIImage(named: "greyBall"), forState: .Normal)
+                button.setBackgroundImage(UIImage(named: "greyBall"), for: UIControlState())
                 button.tintColor = FAColors.FAGrey50
             }
         }
@@ -226,7 +226,7 @@ class BuildUpViewController: UIViewController {
         }
     }
     
-    @IBAction func assumptionStepButtonPressed(sender: UIButton) {
+    @IBAction func assumptionStepButtonPressed(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             assumptionsSlider.value -= 0.005
@@ -239,7 +239,7 @@ class BuildUpViewController: UIViewController {
         updateUI()
     }
     
-    @IBAction func showWarning(sender: UIButton) {
+    @IBAction func showWarning(_ sender: UIButton) {
         let alert = UIAlertView()
         
         if ltaBreached {
@@ -247,19 +247,19 @@ class BuildUpViewController: UIViewController {
             
             let formatter = createNumberFormatter(maxValue: 5000000.0, prefix: "£")
             formatter.minimumFractionDigits = 2
-            alert.message = "Your projected fund value at retirement is " + formatter.stringFromNumber(Double(currentDCPension!.fundValueAtRetirementNominal))! + " (before adjusting into today's money).\n\nThis is higher than the current lifetime allowance of " + formatter.stringFromNumber(GlobalConstants.TaxLimits.LifetimeAllowance)! + ".\n\nIf the lifetime allowance remains the same (and is not indexed), you could face a penalty tax charge on the excess above the allowance."
+            alert.message = "Your projected fund value at retirement is " + formatter.string(from: Double(currentDCPension!.fundValueAtRetirementNominal))! + " (before adjusting into today's money).\n\nThis is higher than the current lifetime allowance of " + formatter.string(from: GlobalConstants.TaxLimits.LifetimeAllowance)! + ".\n\nIf the lifetime allowance remains the same (and is not indexed), you could face a penalty tax charge on the excess above the allowance."
         } else {
             alert.title = "Warning: Annual Allowance"
             
             let formatter = createNumberFormatter(maxValue: 1000.0, prefix: "£")
-            alert.message = "Based on the contribution rate you have selected, your annual contributions next year would be " + formatter.stringFromNumber(Double(currentDCPension!.totalContributionRate!) * Double(currentUser!.salary!))! + ".\n\nThis is higher than the current annual allowance of " + formatter.stringFromNumber(GlobalConstants.TaxLimits.AnnualAllowance)! + " per year.\n\n If you were to pay pension contributions at this level, you could face a penalty tax charge on the excess above the allowance, depending on the extent of any allowances 'carried forward' from earlier years."
+            alert.message = "Based on the contribution rate you have selected, your annual contributions next year would be " + formatter.string(from: Double(currentDCPension!.totalContributionRate!) * Double(currentUser!.salary!))! + ".\n\nThis is higher than the current annual allowance of " + formatter.string(from: GlobalConstants.TaxLimits.AnnualAllowance)! + " per year.\n\n If you were to pay pension contributions at this level, you could face a penalty tax charge on the excess above the allowance, depending on the extent of any allowances 'carried forward' from earlier years."
         }
-        alert.addButtonWithTitle("OK")
+        alert.addButton(withTitle: "OK")
         alert.show()
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SegueToCashOut" {
             if !annuitiesUpdated {
                 repeat {

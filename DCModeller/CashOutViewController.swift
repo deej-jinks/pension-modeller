@@ -27,7 +27,7 @@ class CashOutViewController: UIViewController {
         didSet {
             for box in contentBoxes {
                 box.layer.cornerRadius = cornerRadius
-                box.layer.shadowColor = UIColor.blackColor().CGColor
+                box.layer.shadowColor = UIColor.black.cgColor
                 box.layer.shadowOpacity = 0.4
                 box.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }
@@ -67,7 +67,7 @@ class CashOutViewController: UIViewController {
         if currentDCPension!.selectedRetirementAge == nil {
             currentDCPension!.selectedRetirementAge = max(65,currentUser!.ageNearest)
         } else if Int(currentDCPension!.selectedRetirementAge!) < currentUser!.ageNearest {
-            currentDCPension!.selectedRetirementAge = currentUser!.ageNearest
+            currentDCPension!.selectedRetirementAge = currentUser!.ageNearest as NSNumber?
         }
         retirementAgeSlider.minimumValue = Float(max(55,currentUser!.ageNearest))
         retirementAgeSlider.value = Float(currentDCPension!.selectedRetirementAge!)
@@ -90,24 +90,24 @@ class CashOutViewController: UIViewController {
         let percentFormatter = createPercentageNumberFormatter()
 //        let formatter = createNumberFormatter(maxValue: currentDCPension!.fundValueAtRetirement, prefix: "£")
         
-        retirementAgeLabel.text = String(currentDCPension!.selectedRetirementAge!)
+        retirementAgeLabel.text = String(describing: currentDCPension!.selectedRetirementAge!)
         
         percentFormatter.maximumSignificantDigits = 2
         percentFormatter.minimumSignificantDigits = 2
-        contributionsLabel.text = percentFormatter.stringFromNumber(currentDCPension!.totalContributionRate!)
+        contributionsLabel.text = percentFormatter.string(from: currentDCPension!.totalContributionRate!)
         
         annuityViewController!.updateUI()
         drawdownViewController!.updateUI()
         //print("fund values : \(currentDCPension!.preRetirementFundValues)")
     }
     
-    @IBAction func contributionsSliderValueChanged(sender: AnyObject) {
+    @IBAction func contributionsSliderValueChanged(_ sender: AnyObject) {
         contributionsSlider.value = Float(Int(contributionsSlider.value * 200 + 0.5)) / 200.0
-        currentDCPension!.totalContributionRate = GlobalConstants.ContributionRateIncrements[Int(contributionsSlider.value)]
+        currentDCPension!.totalContributionRate = GlobalConstants.ContributionRateIncrements[Int(contributionsSlider.value)] as NSNumber?
         updateUI()
     }
     
-    @IBAction func contributionsIncrementerPressed(sender: UIButton) {
+    @IBAction func contributionsIncrementerPressed(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             contributionsSlider.value -= 1
@@ -119,13 +119,13 @@ class CashOutViewController: UIViewController {
         }
     }
     
-    @IBAction func retirementAgeSliderValueChanged(sender: AnyObject) {
+    @IBAction func retirementAgeSliderValueChanged(_ sender: AnyObject) {
         retirementAgeSlider.value = Float(Int(retirementAgeSlider.value + 0.5))
-        currentDCPension!.selectedRetirementAge = retirementAgeSlider.value
+        currentDCPension!.selectedRetirementAge = retirementAgeSlider.value as NSNumber?
         updateUI()
     }
     
-    @IBAction func retirementAgeIncrementerPressed(sender: UIButton) {
+    @IBAction func retirementAgeIncrementerPressed(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             retirementAgeSlider.value -= 1
@@ -138,7 +138,7 @@ class CashOutViewController: UIViewController {
         updateUI()
     }
     
-    @IBAction func tabChanged(sender: UISegmentedControl) {
+    @IBAction func tabChanged(_ sender: UISegmentedControl) {
         
         let dummyButton = UIButton()
         dummyButton.tag = 0
@@ -146,13 +146,13 @@ class CashOutViewController: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             annuityViewController!.assumptionButtonPressed(dummyButton)
-            UIView.animateWithDuration(0.5, animations: { 
+            UIView.animate(withDuration: 0.5, animations: { 
                 self.annuityVCHolder.alpha = 1.0
                 self.drawdownVCHolder.alpha = 0.0
             })
         case 1:
             drawdownViewController!.assumptionButtonPressed(dummyButton)
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.annuityVCHolder.alpha = 0.0
                 self.drawdownVCHolder.alpha = 1.0
             })
@@ -163,12 +163,12 @@ class CashOutViewController: UIViewController {
     
     var annuityViewController: AnnuityViewController?
     var drawdownViewController: DrawdownViewController?
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedAnnuityVC" {
-            annuityViewController = segue.destinationViewController as? AnnuityViewController
+            annuityViewController = segue.destination as? AnnuityViewController
         }
         if segue.identifier == "embedDrawdownVC" {
-            drawdownViewController = segue.destinationViewController as? DrawdownViewController
+            drawdownViewController = segue.destination as? DrawdownViewController
         }
     }
     

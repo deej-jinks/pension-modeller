@@ -26,7 +26,7 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
             for box in boxesToRound {
                 box.layer.cornerRadius = cornerRadius
 
-                box.layer.shadowColor = UIColor.blackColor().CGColor
+                box.layer.shadowColor = UIColor.black.cgColor
                 box.layer.shadowOpacity = 0.4
                 box.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }
@@ -57,7 +57,7 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
         updateUI()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         print("in about you, user : \(currentUser!)")
 
         updateUI()
@@ -84,7 +84,7 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
         let formatter = createNumberFormatter(maxValue: 1000.0, prefix: "£")
         
         if let currentFV = currentDCPension!.currentFundValue {
-            fundValueLabel.text = formatter.stringFromNumber(Double(currentFV))
+            fundValueLabel.text = formatter.string(from: Double(currentFV))
         } else {
             fundValueLabel.text = "not set"
         }
@@ -92,7 +92,7 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
         formatter.positiveSuffix = " pa"
         
         if let sal = currentUser!.salary {
-            salaryLabel.text = formatter.stringFromNumber(Double(sal))
+            salaryLabel.text = formatter.string(from: Double(sal))
         } else {
         salaryLabel.text = "not set"
         }
@@ -100,14 +100,14 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
         let percentFormatter = createPercentageNumberFormatter()
         
         if let rate = currentDCPension!.totalContributionRate {
-            contributionRateLabel.text = percentFormatter.stringFromNumber(Double(rate))
+            contributionRateLabel.text = percentFormatter.string(from: Double(rate))
         } else {
         contributionRateLabel.text = "not set"
         }
         
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         print("in should perform segue...identifier : \(identifier)")
         if identifier != "Submit Data" {
             print("identifier fail")
@@ -118,7 +118,7 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
             let alert = UIAlertView()
             alert.title = "Incomplete data"
             alert.message = "Please ensure all fields are completed, and that you have accepted the terms and conditions"
-            alert.addButtonWithTitle("OK")
+            alert.addButton(withTitle: "OK")
             alert.show()
             
             return false
@@ -129,10 +129,10 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
         
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if let nsvc = segue.destinationViewController as? NumberSelectionViewController {
-            nsvc.dataTypeIndex = sender!.tag
+        if let nsvc = segue.destination as? NumberSelectionViewController {
+            nsvc.dataTypeIndex = (sender! as AnyObject).tag
         }
 
         

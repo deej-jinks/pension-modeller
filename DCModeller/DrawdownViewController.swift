@@ -76,7 +76,7 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var cashWarningTriangle: UIButton! {
         didSet {
             cashWarningTriangle.alpha = 0.0
-            cashWarningTriangle.userInteractionEnabled = false
+            cashWarningTriangle.isUserInteractionEnabled = false
         }
     }
     
@@ -86,7 +86,7 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         didSet {
             for box in contentBoxes {
                 box.layer.cornerRadius = cornerRadius
-                box.layer.shadowColor = UIColor.blackColor().CGColor
+                box.layer.shadowColor = UIColor.black.cgColor
                 box.layer.shadowOpacity = 0.4
                 box.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }
@@ -101,7 +101,7 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
             let fivePercentOfFund = Double(currentDCPension!.fundValueAtRetirement) * 0.05
             for i in 0..<GlobalConstants.DrawdownIncomeIncrements.count {
                 if Double(GlobalConstants.DrawdownIncomeIncrements[i]) > fivePercentOfFund {
-                    currentDCPension!.initialDrawdownIncome = GlobalConstants.DrawdownIncomeIncrements[i]
+                    currentDCPension!.initialDrawdownIncome = GlobalConstants.DrawdownIncomeIncrements[i] as NSNumber?
                     break
                 }
             }
@@ -124,20 +124,20 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         assumptionsSlider.value = Float(Int(assumptionsSlider.value / sliderIncrementSize + 0.5)) * sliderIncrementSize
         
         let percentFormatter = createPercentageNumberFormatter()
-        investmentReturnButton.setTitle(percentFormatter.stringFromNumber(Double(currentDCPension!.investmentReturnInDrawdown!)), forState: .Normal)
+        investmentReturnButton.setTitle(percentFormatter.string(from: Double(currentDCPension!.investmentReturnInDrawdown!)), for: UIControlState())
         
         percentFormatter.maximumFractionDigits = 0
-        cashProportionButton.setTitle(percentFormatter.stringFromNumber(Double(currentDCPension!.cashProportion!)), forState: .Normal)
+        cashProportionButton.setTitle(percentFormatter.string(from: Double(currentDCPension!.cashProportion!)), for: UIControlState())
         
         var formatter = createNumberFormatter(maxValue: Double(currentDCPension!.initialDrawdownIncome!), prefix: "£")
         formatter.maximumFractionDigits = 1
-        drawdownIncomeButton.setTitle(formatter.stringFromNumber(Double(currentDCPension!.initialDrawdownIncome!)), forState: .Normal)
+        drawdownIncomeButton.setTitle(formatter.string(from: Double(currentDCPension!.initialDrawdownIncome!)), for: UIControlState())
         
-        inflationProtectionButton.setTitle(Bool(currentDCPension!.incomeInflationaryIncreases!) ? "Yes" : "No", forState: .Normal)
+        inflationProtectionButton.setTitle(Bool(currentDCPension!.incomeInflationaryIncreases!) ? "Yes" : "No", for: UIControlState())
 
         formatter = createNumberFormatter(maxValue: currentDCPension!.cashAmount, prefix: "£")
         
-        cashTakenLabel.text = " Cash Lump Sum : " + formatter.stringFromNumber(currentDCPension!.cashAmount)! + "      "
+        cashTakenLabel.text = " Cash Lump Sum : " + formatter.string(from: currentDCPension!.cashAmount)! + "      "
         
         formatter = createNumberFormatter(maxValue: currentDCPension!.drawdownFundValuesAndIncome.incomes.first!, prefix: "£")
         
@@ -145,18 +145,18 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
             let highlightedAge = min(100,highlight.xIndex + Int(currentDCPension!.selectedRetirementAge!))
             incomeLabel.text = " Income at \(highlightedAge) : " + formatter.stringFromNumber(currentDCPension!.drawdownFundValuesAndIncome.incomes[highlightedAge - Int(currentDCPension!.selectedRetirementAge!)])! + " pa     "
         } else {
-            incomeLabel.text = " Income at \(Int(currentDCPension!.selectedRetirementAge!)) : " + formatter.stringFromNumber(currentDCPension!.initialDrawdownIncome!)! + " pa     "
+            incomeLabel.text = " Income at \(Int(currentDCPension!.selectedRetirementAge!)) : " + formatter.string(from: currentDCPension!.initialDrawdownIncome!)! + " pa     "
         }
         
         if cashOver25pc && cashWarningTriangle.alpha == 0.0 {
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.cashWarningTriangle.alpha = 1.0
-                self.cashWarningTriangle.userInteractionEnabled = true
+                self.cashWarningTriangle.isUserInteractionEnabled = true
             })
         } else if !cashOver25pc && cashWarningTriangle.alpha != 0.0 {
-            UIView.animateWithDuration(0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.cashWarningTriangle.alpha = 0.0
-                self.cashWarningTriangle.userInteractionEnabled = false
+                self.cashWarningTriangle.isUserInteractionEnabled = false
             })
         }
         
@@ -169,27 +169,27 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         drawdownChartView.setCombinedChart(currentDCPension!.agesFromRetirementAgeAsStrings, barValues: incomesAndFVs.incomes, lineValues: incomesAndFVs.fundValues, barValueUnit: "£", lineValueUnit: "£", maxBarValue: incomesAndFVs.incomes.first!, maxLineValue: incomesAndFVs.fundValues.first!, verticalLimit: dataFinder.getLifeExpectancyFromRetirement()!)
     }
     
-    @IBAction func assumptionsSliderValueChanged(sender: AnyObject) {
+    @IBAction func assumptionsSliderValueChanged(_ sender: AnyObject) {
         assumptionsSlider.value = Float(Int(assumptionsSlider.value / sliderIncrementSize + 0.5)) * sliderIncrementSize
         switch activeAssumption {
-        case 0: currentDCPension!.cashProportion! = Double(assumptionsSlider.value)
-        case 1: currentDCPension!.initialDrawdownIncome = possibleSliderValues[Int(assumptionsSlider.value / sliderIncrementSize + 0.5)]
+        case 0: currentDCPension!.cashProportion! = NSNumber(Double(assumptionsSlider.value))
+        case 1: currentDCPension!.initialDrawdownIncome = possibleSliderValues[Int(assumptionsSlider.value / sliderIncrementSize + 0.5)] as NSNumber?
         case 2: currentDCPension!.incomeInflationaryIncreases = Bool(assumptionsSlider.value)
-        case 3: currentDCPension!.investmentReturnInDrawdown = Double(assumptionsSlider.value * 0.1)
+        case 3: currentDCPension!.investmentReturnInDrawdown = Double(assumptionsSlider.value * 0.1) as NSNumber?
         default: break
         }
         
         updateUI()
     }
     
-    @IBAction func assumptionButtonPressed(sender: UIButton) {
+    @IBAction func assumptionButtonPressed(_ sender: UIButton) {
         activeAssumption = sender.tag
         for button in assumptionButtons {
             if button.tag == sender.tag {
-                button.setBackgroundImage(UIImage(named: "orangeBall"), forState: .Normal)
+                button.setBackgroundImage(UIImage(named: "orangeBall"), for: UIControlState())
                 button.tintColor = GlobalConstants.ColorPalette.SecondaryColorLight
             } else {
-                button.setBackgroundImage(UIImage(named: "greyBall"), forState: .Normal)
+                button.setBackgroundImage(UIImage(named: "greyBall"), for: UIControlState())
                 button.tintColor = FAColors.FAGrey50
             }
         }
@@ -211,7 +211,7 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    @IBAction func assumptionStepButtonPressed(sender: UIButton) {
+    @IBAction func assumptionStepButtonPressed(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             assumptionsSlider.value -= sliderIncrementSize
@@ -224,15 +224,15 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         updateUI()
     }
 
-    @IBAction func showCashWarning(sender: UIButton) {
+    @IBAction func showCashWarning(_ sender: UIButton) {
         let alert = UIAlertView()
         alert.title = "Warning: Cash Commutation"
         alert.message = "You have selected to take more than 25% of your fund as cash.\n\nThe usual tax free cash allowance is 25% of your fund.\n\nIf you take more than this, you might be taxed on the part of your fund above 25%."
-        alert.addButtonWithTitle("OK")
+        alert.addButton(withTitle: "OK")
         alert.show()
     }
     
-    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         updateUI()
     }
 }

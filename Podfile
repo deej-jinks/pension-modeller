@@ -6,5 +6,5 @@ target 'F1rstPension' do
   use_frameworks!
 
   # Pods for F1rstPension
-pod 'Charts', '~> 2.2'
+pod 'Charts', '~> 3.0'
 end

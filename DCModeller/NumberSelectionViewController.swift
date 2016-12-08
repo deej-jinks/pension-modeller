@@ -22,8 +22,8 @@ class NumberSelectionViewController: UIViewController, UITextFieldDelegate {
         didSet {
             numberTextField.delegate = self
             switch dataTypeIndex {
-            case 0...99: numberTextField.keyboardType = UIKeyboardType.NumberPad
-            default: numberTextField.keyboardType = UIKeyboardType.Default
+            case 0...99: numberTextField.keyboardType = UIKeyboardType.numberPad
+            default: numberTextField.keyboardType = UIKeyboardType.default
             }
             
         }
@@ -34,7 +34,7 @@ class NumberSelectionViewController: UIViewController, UITextFieldDelegate {
         didSet {
             for box in contentBoxes {
                 box.layer.cornerRadius = cornerRadius
-                box.layer.shadowColor = UIColor.blackColor().CGColor
+                box.layer.shadowColor = UIColor.black.cgColor
                 box.layer.shadowOpacity = 0.4
                 box.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }
@@ -65,10 +65,10 @@ class NumberSelectionViewController: UIViewController, UITextFieldDelegate {
     }
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         switch dataTypeIndex {
-        case 0: currentUser?.salary = Double(textField.text!)!
-        case 1: currentDCPension?.currentFundValue = Double(textField.text!)!
+        case 0: currentUser?.salary = Double(textField.text!)! as NSNumber?
+        case 1: currentDCPension?.currentFundValue = Double(textField.text!)! as NSNumber?
         default: break
         }
         

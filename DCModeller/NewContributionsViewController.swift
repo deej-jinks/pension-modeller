@@ -47,7 +47,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         case 1: return "Please use the controls below to enter your contribution rate (as a percentage of salary), and the rate paid by your employer if relevant."
         case 2: return "Please select the method by which you pay your pension contributions. Double tap on a method to find out more."
         case 3: return "When you pay pension contributions by salary sacrifice, your employer saves on its national insurance bill. Some employers choose to pass some or all of this saving on to employees. Please use the slider below to set the rate of 'NI payover', if relevant."
-        case 4: return "Based on the selected inputs, the effective total contribution rate is around " + createPercentageNumberFormatter().stringFromNumber(Double(currentDCPension!.totalContributionRate!))! + ". We will use this figure as a starting point in the modeller, but you can change it later."
+        case 4: return "Based on the selected inputs, the effective total contribution rate is around " + createPercentageNumberFormatter().string(from: Double(currentDCPension!.totalContributionRate!))! + ". We will use this figure as a starting point in the modeller, but you can change it later."
         default: return ""
         }
     }
@@ -138,7 +138,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     @IBOutlet var viewsWithShadows: [UIView]! {
         didSet {
             for view in viewsToRound {
-                view.layer.shadowColor = UIColor.blackColor().CGColor
+                view.layer.shadowColor = UIColor.black.cgColor
                 view.layer.shadowOpacity = 0.4
                 view.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
             }
@@ -203,26 +203,26 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         formatter.minimumFractionDigits = 2
         
         if inputStep >= 2 {
-            grossMonthlyContributionsLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyMemberContributions_Gross)! + " "
+            grossMonthlyContributionsLabel.text = " " + formatter.string(from: currentDCPension!.monthlyMemberContributions_Gross)! + " "
             if inputStep >= 3 {
-                incomeTaxSavingLabel.text = "(" + formatter.stringFromNumber(currentDCPension!.monthlyImmediateTaxRelief)! + ")"
-                niSavingLabel.text = "(" + formatter.stringFromNumber(currentDCPension!.monthlyNISaving)! + ")"
-                taxToReclaimLabel.text = "(" + formatter.stringFromNumber(currentDCPension!.monthlyTaxReclaim)! + ")"
-                netPensionCostLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyNetPensionCost)! + " "
+                incomeTaxSavingLabel.text = "(" + formatter.string(from: currentDCPension!.monthlyImmediateTaxRelief)! + ")"
+                niSavingLabel.text = "(" + formatter.string(from: currentDCPension!.monthlyNISaving)! + ")"
+                taxToReclaimLabel.text = "(" + formatter.string(from: currentDCPension!.monthlyTaxReclaim)! + ")"
+                netPensionCostLabel.text = " " + formatter.string(from: currentDCPension!.monthlyNetPensionCost)! + " "
                 
                 if currentDCPension!.niPayoverProportion != nil {
-                niPayoverProportionLabel.text = createPercentageNumberFormatter().stringFromNumber(currentDCPension!.niPayoverProportion!)
+                niPayoverProportionLabel.text = createPercentageNumberFormatter().string(from: currentDCPension!.niPayoverProportion!)
                 } else {
                     niPayoverProportionLabel.text = "0.0%"
                 }
                 
-                memberContributionsIntoPotLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyMemberContributions_Gross)! + " "
-                employerContributionsIntoPotLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyEmployerContributions)! + " "
-                niPayoverIntoPotLabel.text = " " + formatter.stringFromNumber(currentDCPension!.monthlyNIPayover)! + " "
-                totalIntoPotLabel.text = " " + formatter.stringFromNumber(currentDCPension!.totalIntoPot)! + " "
+                memberContributionsIntoPotLabel.text = " " + formatter.string(from: currentDCPension!.monthlyMemberContributions_Gross)! + " "
+                employerContributionsIntoPotLabel.text = " " + formatter.string(from: currentDCPension!.monthlyEmployerContributions)! + " "
+                niPayoverIntoPotLabel.text = " " + formatter.string(from: currentDCPension!.monthlyNIPayover)! + " "
+                totalIntoPotLabel.text = " " + formatter.string(from: currentDCPension!.totalIntoPot)! + " "
             }
         } else {
-            grossMonthlyContributionsLabel.text = formatter.stringFromNumber(0.0)
+            grossMonthlyContributionsLabel.text = formatter.string(from: 0.0)
         }
     }
     
@@ -244,7 +244,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     func setBoxHeightsAnimated() {
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.setBoxHeights()
             self.view.layoutIfNeeded()
         })
@@ -264,15 +264,15 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     func setAlphasAnimated() {
-        UIView.animateWithDuration(0.5) { 
+        UIView.animate(withDuration: 0.5, animations: { 
             self.setAlphas()
-        }
+        }) 
     }
     
     
     //MARK:- IBactions
     
-    @IBAction func contributionMethodSelected(sender: UISegmentedControl) {
+    @IBAction func contributionMethodSelected(_ sender: UISegmentedControl) {
         
         if currentDCPension!.paymentMethod == GlobalConstants.DCPaymentMethods.All[sender.selectedSegmentIndex] {
             let alert = UIAlertView()
@@ -285,7 +285,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
             default: break
             }
             alert.message = msg
-            alert.addButtonWithTitle("OK")
+            alert.addButton(withTitle: "OK")
             alert.show()
         } else {
             currentDCPension!.paymentMethod = GlobalConstants.DCPaymentMethods.All[sender.selectedSegmentIndex]
@@ -301,12 +301,12 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         updateUI()
     }
 
-    @IBAction func toggleShowContDetails(sender: UIButton) {
+    @IBAction func toggleShowContDetails(_ sender: UIButton) {
         showContsDetails = !showContsDetails
         updateUI()
     }
 
-    @IBAction func toggleShowCashIntoPotDetail(sender: UIButton) {
+    @IBAction func toggleShowCashIntoPotDetail(_ sender: UIButton) {
         print("in toggleShowCashIntoPot")
         showCashIntoPotDetail = !showCashIntoPotDetail
         updateUI()
@@ -314,39 +314,39 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     
     //MARK:- picker view methods
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData.count
     }
     
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let l = UILabel()
         
         let percentFormatter = createPercentageNumberFormatter()
-        l.text = percentFormatter.stringFromNumber(pickerData[row])
+        l.text = percentFormatter.string(from: pickerData[row])
         
-        l.textAlignment = NSTextAlignment.Center
+        l.textAlignment = NSTextAlignment.center
         l.backgroundColor = GlobalConstants.ColorPalette.SecondaryColorDark
         l.font = UIFont(name: "Arial", size: 11.0)
-        l.textColor = UIColor.blackColor()
+        l.textColor = UIColor.black
         l.layer.cornerRadius = 5.0
         l.clipsToBounds = true
         return l
     }
     
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return standardRowHeight * 0.7
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         inputStep = max(inputStep, 2)
         
-        currentDCPension!.memberContributionRate = GlobalConstants.ContributionRateIncrements[employeeContPicker.selectedRowInComponent(0)]
-        currentDCPension!.employerContributionRate = GlobalConstants.ContributionRateIncrements[employerContPicker.selectedRowInComponent(0)]
+        currentDCPension!.memberContributionRate = GlobalConstants.ContributionRateIncrements[employeeContPicker.selectedRow(inComponent: 0)] as NSNumber?
+        currentDCPension!.employerContributionRate = GlobalConstants.ContributionRateIncrements[employerContPicker.selectedRow(inComponent: 0)] as NSNumber?
 
         updateTotalContributionRate()
         updateUI()
@@ -364,29 +364,29 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
                 closestRate = GlobalConstants.ContributionRateIncrements[i]
             }
         }
-        currentDCPension!.totalContributionRate = closestRate
+        currentDCPension!.totalContributionRate = closestRate as NSNumber?
     }
     
-    @IBAction func niPayoverSliderValueChanged(sender: UISlider) {
+    @IBAction func niPayoverSliderValueChanged(_ sender: UISlider) {
         niPayoverSlider.value = floor(niPayoverSlider.value * 20.0 + 1.0 / 40.0) / 20.0
-        currentDCPension!.niPayoverProportion = Double(sender.value)
+        currentDCPension!.niPayoverProportion = Double(sender.value) as NSNumber?
         inputStep = max(inputStep, 4)
         updateTotalContributionRate()
         updateUI()
     }
-    @IBAction func niPayoverIncrementerPressed(sender: UIButton) {
+    @IBAction func niPayoverIncrementerPressed(_ sender: UIButton) {
         if sender.tag == 1 {
             niPayoverSlider.value = min(1.0, niPayoverSlider.value + 0.05)
         } else {
             niPayoverSlider.value = max(0.0, niPayoverSlider.value - 0.05)
         }
-        currentDCPension!.niPayoverProportion = Double(niPayoverSlider.value)
+        currentDCPension!.niPayoverProportion = Double(niPayoverSlider.value) as NSNumber?
         inputStep = max(inputStep, 4)
         updateTotalContributionRate()
         updateUI()
     }
     
-    @IBAction func changeInstructionPage(sender: UIButton) {
+    @IBAction func changeInstructionPage(_ sender: UIButton) {
         switch sender.tag {
         case 0: inputStep = max(0, inputStep - 1)
         case 1: inputStep = min(4, inputStep + 1)

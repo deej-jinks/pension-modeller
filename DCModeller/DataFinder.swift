@@ -47,10 +47,10 @@ class DataFinder {
     }
 
     func getAnnuitySet() -> AnnuitySet? {
-        let request = NSFetchRequest(entityName: "AnnuitySet")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AnnuitySet")
         request.predicate = NSPredicate(format: "retirementAge == %f && yearOfBirth == %d && gender = %@", Double(currentDCPension!.selectedRetirementAge!), currentUser!.yearOfBirth, Bool(currentUser!.isMale!) ? "M" : "F")
         do {
-            let results = try AppDelegate.getContext().executeFetchRequest(request) as! [AnnuitySet]
+            let results = try AppDelegate.getContext().fetch(request) as! [AnnuitySet]
             return results.first
         } catch { return nil }
     }

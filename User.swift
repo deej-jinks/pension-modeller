@@ -17,17 +17,17 @@ class User: NSManagedObject {
     }
     
     var yearOfBirth: Int {
-        return NSCalendar.currentCalendar().component(.Year, fromDate: dateOfBirth!)
+        return (Calendar.current as NSCalendar).component(.year, from: dateOfBirth! as Date)
     }
     
     var ageComplete: Int {
-        let x = NSDate(timeIntervalSinceNow: 0.0).yearsFrom(dateOfBirth!)
+        let x = Date(timeIntervalSinceNow: 0.0).yearsFrom(dateOfBirth!)
         return x
     }
     
     var ageNearest: Int {
-        let x = NSDate(timeIntervalSinceNow: 0.0).yearsFrom(dateOfBirth!)
-        let y = NSDate(timeIntervalSinceNow: 0.0).monthsFrom(dateOfBirth!) % 12
+        let x = Date(timeIntervalSinceNow: 0.0).yearsFrom(dateOfBirth!)
+        let y = Date(timeIntervalSinceNow: 0.0).monthsFrom(dateOfBirth!) % 12
         if y < 6 {
             return x
         } else {

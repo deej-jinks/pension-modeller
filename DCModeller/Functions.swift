@@ -7,9 +7,33 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public func createPercentageNumberFormatter() -> (NSNumberFormatter) {
-    let myNSNumberFormatter = NSNumberFormatter()
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+public func createPercentageNumberFormatter() -> (NumberFormatter) {
+    let myNSNumberFormatter = NumberFormatter()
     myNSNumberFormatter.multiplier = 100
     myNSNumberFormatter.maximumFractionDigits = 1
     myNSNumberFormatter.minimumFractionDigits = 1
@@ -20,11 +44,11 @@ public func createPercentageNumberFormatter() -> (NSNumberFormatter) {
     return (myNSNumberFormatter)
 }
 
-public func createNumberFormatter(maxValue maxValue: Double, prefix: String) -> (NSNumberFormatter) {
+public func createNumberFormatter(maxValue: Double, prefix: String) -> (NumberFormatter) {
     var mySuffix = ""
     var myDivisor = 1.0
     
-    let myNSNumberFormatter = NSNumberFormatter()
+    let myNSNumberFormatter = NumberFormatter()
     
     switch maxValue {
     case 0..<100:
@@ -76,12 +100,12 @@ public func createNumberFormatter(maxValue maxValue: Double, prefix: String) -> 
 
 // MARK: - Date helper functions / extensions
 
-extension NSDate {
-    func yearsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.Year, fromDate: date, toDate: self, options: .WrapComponents).year
+extension Date {
+    func yearsFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.year, from: date, to: self, options: .wrapComponents).year!
     }
-    func monthsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(NSCalendarUnit.Month, fromDate: date, toDate: self, options: .WrapComponents).month
+    func monthsFrom(_ date:Date) -> Int{
+        return (Calendar.current as NSCalendar).components(NSCalendar.Unit.month, from: date, to: self, options: .wrapComponents).month!
     }
 //    func weeksFrom(date:NSDate) -> Int{
 //        return NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitWeekOfYear, fromDate: date, toDate: self, options: nil).weekOfYear
@@ -121,50 +145,50 @@ extension NSDate {
 //let minutes = date2.minutesFrom(date1) // 393,180
 //let seconds = date2.secondsFrom(date1) // 23,590,800
 
-public func setNewDateFromExcelNumber(number: Double) -> NSDate? {
-    let date = NSDate(timeInterval: (number - 1.1) * 86400, sinceDate: setNewDate(year: 1900, month: 1, day: 1)!)
+public func setNewDateFromExcelNumber(_ number: Double) -> Date? {
+    let date = Date(timeInterval: (number - 1.1) * 86400, since: setNewDate(year: 1900, month: 1, day: 1)!)
     return date
 }
 
-public func setNewDate (year year:Int,month:Int,day:Int) -> NSDate? {
-    let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+public func setNewDate (year:Int,month:Int,day:Int) -> Date? {
+    let myCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
     
-    let myDateComponents = NSDateComponents()
-    myDateComponents.timeZone = NSTimeZone(abbreviation: "GMT")
+    var myDateComponents = DateComponents()
+    (myDateComponents as NSDateComponents).timeZone = TimeZone(abbreviation: "GMT")
     myDateComponents.year = year
     myDateComponents.month = month
     myDateComponents.day = 1
     
-    let daysInMonth = myCalendar?.rangeOfUnit(.Day, inUnit: .Month, forDate: (myCalendar?.dateFromComponents(myDateComponents))!).length
+    let daysInMonth = (myCalendar as NSCalendar?)?.range(of: .day, in: .month, for: (myCalendar.date(from: myDateComponents))!).length
     
     if day > daysInMonth {
         return nil
     } else {
         myDateComponents.day = day
-        return myCalendar!.dateFromComponents(myDateComponents)
+        return myCalendar.date(from: myDateComponents)
     }
 }
 
-public func getStringForDate (date: NSDate) -> String {
-    let myDateFormatter = NSDateFormatter()
+public func getStringForDate (_ date: Date) -> String {
+    let myDateFormatter = DateFormatter()
     myDateFormatter.dateFormat = "d MMMM yyyy"
-    return myDateFormatter.stringFromDate(date)
+    return myDateFormatter.string(from: date)
 }
 
-public func getStringForDate_ShortMonth (date: NSDate) -> String {
-    let myDateFormatter = NSDateFormatter()
+public func getStringForDate_ShortMonth (_ date: Date) -> String {
+    let myDateFormatter = DateFormatter()
     myDateFormatter.dateFormat = "d MMM yyyy"
-    return myDateFormatter.stringFromDate(date)
+    return myDateFormatter.string(from: date)
 }
 
 
 // to allow dates to be compared using == and <, >
-public func ==(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs === rhs || lhs.compare(rhs) == .OrderedSame
+public func ==(lhs: Date, rhs: Date) -> Bool {
+    return lhs === rhs || lhs.compare(rhs) == .orderedSame
 }
 
-public func <(lhs: NSDate, rhs: NSDate) -> Bool {
-    return lhs.compare(rhs) == .OrderedAscending
+public func <(lhs: Date, rhs: Date) -> Bool {
+    return lhs.compare(rhs) == .orderedAscending
 }
 
-extension NSDate: Comparable { }
+extension Date: Comparable { }

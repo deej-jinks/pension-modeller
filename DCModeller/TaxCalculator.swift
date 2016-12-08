@@ -49,7 +49,7 @@ class TaxCalculator {
         static let RateFromUEL = 0.138
     }
     
-    func employerNIPerYear(annualSalary: Double) -> Double {
+    func employerNIPerYear(_ annualSalary: Double) -> Double {
         var runningTotal = 0.0
         runningTotal += EmployerNIRatesAndLimits.RateBelowST * min(annualSalary,EmployerNIRatesAndLimits.SecondaryThreshold)
         runningTotal += EmployerNIRatesAndLimits.RateFromSTtoUEL * (min(annualSalary,EmployerNIRatesAndLimits.UEL) - min(annualSalary,NIRatesAndLimits.SecondaryThreshold))
@@ -57,11 +57,11 @@ class TaxCalculator {
         return runningTotal
     }
     
-    func employerNIPerMonth(monthlySalary: Double) -> Double {
+    func employerNIPerMonth(_ monthlySalary: Double) -> Double {
         return employerNIPerYear(monthlySalary * 12) / 12
     }
     
-    func niPerYear(annualSalary: Double) -> Double {
+    func niPerYear(_ annualSalary: Double) -> Double {
         var runningTotal = 0.0
         runningTotal += NIRatesAndLimits.RateBelowLEL * min(annualSalary,NIRatesAndLimits.LEL)
         runningTotal += NIRatesAndLimits.RateFromLELtoPT * (min(annualSalary,NIRatesAndLimits.PrimaryThreshold) - min(annualSalary,NIRatesAndLimits.LEL))
@@ -70,11 +70,11 @@ class TaxCalculator {
         return runningTotal
     }
     
-    func niPerMonth(monthlySalary: Double) -> Double {
+    func niPerMonth(_ monthlySalary: Double) -> Double {
         return niPerYear(monthlySalary * 12) / 12
     }
     
-    func incomeTaxPerYear(annualSalary: Double) -> Double {
+    func incomeTaxPerYear(_ annualSalary: Double) -> Double {
 
         let excessSalary = (annualSalary - min(annualSalary,IncomeTaxRatesAndLimits.IncomeLimitForPersonalAllowance))
         let adjustedPersonalAllowance = max(0.0, IncomeTaxRatesAndLimits.StandardPersonalAllowance - excessSalary * IncomeTaxRatesAndLimits.PersonalAllowanceReductionRate)
@@ -87,7 +87,7 @@ class TaxCalculator {
         return runningTotal
     }
     
-    func incomeTaxPerMonth(monthlySalary: Double) -> Double {
+    func incomeTaxPerMonth(_ monthlySalary: Double) -> Double {
         return incomeTaxPerYear(monthlySalary * 12.0) / 12
     }
     
