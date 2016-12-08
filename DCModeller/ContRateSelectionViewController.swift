@@ -74,7 +74,7 @@ class ContRateSelectionViewController: UIViewController, UIPickerViewDataSource,
         let l = UILabel()
 
         let percentFormatter = createPercentageNumberFormatter()
-        l.text = percentFormatter.string(from: pickerData[row])
+        l.text = percentFormatter.string(from: NSNumber(value: pickerData[row]))
 
         l.textAlignment = NSTextAlignment.center
         l.backgroundColor = GlobalConstants.ColorPalette.SecondaryColorDark
@@ -86,11 +86,11 @@ class ContRateSelectionViewController: UIViewController, UIPickerViewDataSource,
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentDCPension?.totalContributionRate = Double(pickerData[row])
+        currentDCPension?.totalContributionRate = NSNumber(value: pickerData[row])
         if let salary = currentUser!.salary {
             let monthlyConts = Double(salary) * Double(currentDCPension!.totalContributionRate!) / 12
             let formatter = createNumberFormatter(maxValue: 1000.0, prefix: "£")
-            infoText.text = "Based on the salary figure you have entered,\nthat is around " + formatter.string(from: monthlyConts)! + " per month (gross)"
+            infoText.text = "Based on the salary figure you have entered,\nthat is around " + formatter.string(from: NSNumber(value: monthlyConts))! + " per month (gross)"
             UIView.animate(withDuration: 0.5, animations: {
                 self.infoBox.alpha = 1.0
             }) 

@@ -84,7 +84,7 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
         let formatter = createNumberFormatter(maxValue: 1000.0, prefix: "£")
         
         if let currentFV = currentDCPension!.currentFundValue {
-            fundValueLabel.text = formatter.string(from: Double(currentFV))
+            fundValueLabel.text = formatter.string(from: currentFV)
         } else {
             fundValueLabel.text = "not set"
         }
@@ -92,7 +92,7 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
         formatter.positiveSuffix = " pa"
         
         if let sal = currentUser!.salary {
-            salaryLabel.text = formatter.string(from: Double(sal))
+            salaryLabel.text = formatter.string(from: sal)
         } else {
         salaryLabel.text = "not set"
         }
@@ -100,7 +100,7 @@ class AboutYouViewController: UIViewController,  UITableViewDelegate {
         let percentFormatter = createPercentageNumberFormatter()
         
         if let rate = currentDCPension!.totalContributionRate {
-            contributionRateLabel.text = percentFormatter.string(from: Double(rate))
+            contributionRateLabel.text = percentFormatter.string(from: rate)
         } else {
         contributionRateLabel.text = "not set"
         }

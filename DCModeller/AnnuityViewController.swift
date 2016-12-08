@@ -99,7 +99,7 @@ class AnnuityViewController: UIViewController, ChartViewDelegate {
         
         let percentFormatter = createPercentageNumberFormatter()
         percentFormatter.maximumFractionDigits = 0
-        cashProportionButton.setTitle(percentFormatter.string(from: Double(currentDCPension!.cashProportion!)), for: UIControlState())
+        cashProportionButton.setTitle(percentFormatter.string(from: currentDCPension!.cashProportion!), for: UIControlState())
         spousePensionButton.setTitle(Double(currentDCPension!.annuitySpouseProportion!) == 0.0 ? "No" : "Yes", for: UIControlState())
         inflationProtectionButton.setTitle(Bool(currentDCPension!.incomeInflationaryIncreases!) ? "Yes" : "No", for: UIControlState())
 
@@ -107,15 +107,15 @@ class AnnuityViewController: UIViewController, ChartViewDelegate {
         
         
         
-        cashTakenLabel.text = " Cash Lump Sum : " + formatter.string(from: currentDCPension!.cashAmount)! + "      "
+        cashTakenLabel.text = " Cash Lump Sum : " + formatter.string(from: NSNumber(value: currentDCPension!.cashAmount))! + "      "
         
         formatter = createNumberFormatter(maxValue: 100, prefix: "£")
         
         if let highlight = incomeChartView.highlighted.first {
-            let highlightedAge = min(100,highlight.xIndex + Int(currentDCPension!.selectedRetirementAge!))
-            incomeLabel.text = " Income at \(highlightedAge) : " + formatter.stringFromNumber(dataFinder.getAnnuityIncome()![highlightedAge - Int(currentDCPension!.selectedRetirementAge!)])! + " pa     "
+            let highlightedAge = min(100,highlight.x + Double(currentDCPension!.selectedRetirementAge!))
+            incomeLabel.text = " Income at \(highlightedAge) : " + formatter.string(from: NSNumber(value: dataFinder.getAnnuityIncome()![Int(highlightedAge) - Int(currentDCPension!.selectedRetirementAge!)]))! + " pa     "
         } else {
-            incomeLabel.text = " Income at \(Int(currentDCPension!.selectedRetirementAge!)) : " + formatter.string(from: dataFinder.getAnnuityIncome()!.first!)! + " pa     "
+            incomeLabel.text = " Income at \(Int(currentDCPension!.selectedRetirementAge!)) : " + formatter.string(from: NSNumber(value: dataFinder.getAnnuityIncome()!.first!))! + " pa     "
         }
 
         if cashOver25pc && cashWarningTriangle.alpha == 0.0 {
@@ -140,9 +140,9 @@ class AnnuityViewController: UIViewController, ChartViewDelegate {
     @IBAction func assumptionsSliderValueChanged(_ sender: AnyObject) {
         assumptionsSlider.value = Float(Int(assumptionsSlider.value / sliderIncrementSize + 0.5)) * sliderIncrementSize
         switch activeAssumption {
-        case 0: currentDCPension!.cashProportion! = NSNumber(Double(assumptionsSlider.value))
+        case 0: currentDCPension!.cashProportion! = NSNumber(value: Double(assumptionsSlider.value))
         case 1: currentDCPension?.annuitySpouseProportion = Double(assumptionsSlider.value * 0.5) as NSNumber?
-        case 2: currentDCPension!.incomeInflationaryIncreases = Bool(assumptionsSlider.value)
+        case 2: currentDCPension!.incomeInflationaryIncreases = NSNumber(value: assumptionsSlider.value)
         default: break
         }
         
@@ -191,7 +191,7 @@ class AnnuityViewController: UIViewController, ChartViewDelegate {
         alert.show()
     }
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
         updateUI()
     }
 }

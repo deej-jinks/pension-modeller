@@ -90,7 +90,7 @@ class BuildUpViewController: UIViewController {
 
     func initialiseUI() {
         if currentDCPension!.selectedRetirementAge == nil {
-            currentDCPension!.selectedRetirementAge = max(65,currentUser!.ageNearest)
+            currentDCPension!.selectedRetirementAge = NSNumber(value: max(65,currentUser!.ageNearest))
         } else if Int(currentDCPension!.selectedRetirementAge!) < currentUser!.ageNearest {
             currentDCPension!.selectedRetirementAge = currentUser!.ageNearest as NSNumber?
         }
@@ -117,7 +117,7 @@ class BuildUpViewController: UIViewController {
     func updateUI() {
         
         let percentFormatter = createPercentageNumberFormatter()
-        inflationButton.setTitle(percentFormatter.string(from: assumptionsSlider.value), for: UIControlState())
+        inflationButton.setTitle(percentFormatter.string(from: NSNumber(value: assumptionsSlider.value)), for: UIControlState())
         let formatter = createNumberFormatter(maxValue: currentDCPension!.fundValueAtRetirement, prefix: "£")
 
         
@@ -126,7 +126,7 @@ class BuildUpViewController: UIViewController {
         investmentReturnButton.setTitle(percentFormatter.string(from: currentDCPension!.investmentReturnsPreRetirement!), for: UIControlState())
     
         
-        retirementFVLabel.text = "  Retirement Fund Value : " + formatter.string(from: currentDCPension!.fundValueAtRetirement)! + "        "
+        retirementFVLabel.text = "  Retirement Fund Value : " + formatter.string(from: NSNumber(value: currentDCPension!.fundValueAtRetirement))! + "        "
         
         if (ltaBreached || aaBreached) && fvWarningTriangle.alpha == 0.0 {
             UIView.animate(withDuration: 0.5, animations: { 
@@ -247,12 +247,12 @@ class BuildUpViewController: UIViewController {
             
             let formatter = createNumberFormatter(maxValue: 5000000.0, prefix: "£")
             formatter.minimumFractionDigits = 2
-            alert.message = "Your projected fund value at retirement is " + formatter.string(from: Double(currentDCPension!.fundValueAtRetirementNominal))! + " (before adjusting into today's money).\n\nThis is higher than the current lifetime allowance of " + formatter.string(from: GlobalConstants.TaxLimits.LifetimeAllowance)! + ".\n\nIf the lifetime allowance remains the same (and is not indexed), you could face a penalty tax charge on the excess above the allowance."
+            alert.message = "Your projected fund value at retirement is " + formatter.string(from: NSNumber(value: Double(currentDCPension!.fundValueAtRetirementNominal)))! + " (before adjusting into today's money).\n\nThis is higher than the current lifetime allowance of " + formatter.string(from: NSNumber(value: GlobalConstants.TaxLimits.LifetimeAllowance))! + ".\n\nIf the lifetime allowance remains the same (and is not indexed), you could face a penalty tax charge on the excess above the allowance."
         } else {
             alert.title = "Warning: Annual Allowance"
             
             let formatter = createNumberFormatter(maxValue: 1000.0, prefix: "£")
-            alert.message = "Based on the contribution rate you have selected, your annual contributions next year would be " + formatter.string(from: Double(currentDCPension!.totalContributionRate!) * Double(currentUser!.salary!))! + ".\n\nThis is higher than the current annual allowance of " + formatter.string(from: GlobalConstants.TaxLimits.AnnualAllowance)! + " per year.\n\n If you were to pay pension contributions at this level, you could face a penalty tax charge on the excess above the allowance, depending on the extent of any allowances 'carried forward' from earlier years."
+            alert.message = "Based on the contribution rate you have selected, your annual contributions next year would be " + formatter.string(from: NSNumber(value: Double(currentDCPension!.totalContributionRate!) * Double(currentUser!.salary!)))! + ".\n\nThis is higher than the current annual allowance of " + formatter.string(from: NSNumber(value: GlobalConstants.TaxLimits.AnnualAllowance))! + " per year.\n\n If you were to pay pension contributions at this level, you could face a penalty tax charge on the excess above the allowance, depending on the extent of any allowances 'carried forward' from earlier years."
         }
         alert.addButton(withTitle: "OK")
         alert.show()

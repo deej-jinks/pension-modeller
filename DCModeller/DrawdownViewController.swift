@@ -124,26 +124,26 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         assumptionsSlider.value = Float(Int(assumptionsSlider.value / sliderIncrementSize + 0.5)) * sliderIncrementSize
         
         let percentFormatter = createPercentageNumberFormatter()
-        investmentReturnButton.setTitle(percentFormatter.string(from: Double(currentDCPension!.investmentReturnInDrawdown!)), for: UIControlState())
+        investmentReturnButton.setTitle(percentFormatter.string(from: currentDCPension!.investmentReturnInDrawdown!), for: UIControlState())
         
         percentFormatter.maximumFractionDigits = 0
-        cashProportionButton.setTitle(percentFormatter.string(from: Double(currentDCPension!.cashProportion!)), for: UIControlState())
+        cashProportionButton.setTitle(percentFormatter.string(from: currentDCPension!.cashProportion!), for: UIControlState())
         
         var formatter = createNumberFormatter(maxValue: Double(currentDCPension!.initialDrawdownIncome!), prefix: "£")
         formatter.maximumFractionDigits = 1
-        drawdownIncomeButton.setTitle(formatter.string(from: Double(currentDCPension!.initialDrawdownIncome!)), for: UIControlState())
+        drawdownIncomeButton.setTitle(formatter.string(from: currentDCPension!.initialDrawdownIncome!), for: UIControlState())
         
         inflationProtectionButton.setTitle(Bool(currentDCPension!.incomeInflationaryIncreases!) ? "Yes" : "No", for: UIControlState())
 
         formatter = createNumberFormatter(maxValue: currentDCPension!.cashAmount, prefix: "£")
         
-        cashTakenLabel.text = " Cash Lump Sum : " + formatter.string(from: currentDCPension!.cashAmount)! + "      "
+        cashTakenLabel.text = " Cash Lump Sum : " + formatter.string(from: NSNumber(value: currentDCPension!.cashAmount))! + "      "
         
         formatter = createNumberFormatter(maxValue: currentDCPension!.drawdownFundValuesAndIncome.incomes.first!, prefix: "£")
         
         if let highlight = drawdownChartView.highlighted.first {
-            let highlightedAge = min(100,highlight.xIndex + Int(currentDCPension!.selectedRetirementAge!))
-            incomeLabel.text = " Income at \(highlightedAge) : " + formatter.stringFromNumber(currentDCPension!.drawdownFundValuesAndIncome.incomes[highlightedAge - Int(currentDCPension!.selectedRetirementAge!)])! + " pa     "
+            let highlightedAge = min(100,highlight.x + Double(currentDCPension!.selectedRetirementAge!))
+            incomeLabel.text = " Income at \(highlightedAge) : " + formatter.string(from: NSNumber(value: currentDCPension!.drawdownFundValuesAndIncome.incomes[Int(highlightedAge) - Int(currentDCPension!.selectedRetirementAge!)]))! + " pa     "
         } else {
             incomeLabel.text = " Income at \(Int(currentDCPension!.selectedRetirementAge!)) : " + formatter.string(from: currentDCPension!.initialDrawdownIncome!)! + " pa     "
         }
@@ -172,9 +172,9 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
     @IBAction func assumptionsSliderValueChanged(_ sender: AnyObject) {
         assumptionsSlider.value = Float(Int(assumptionsSlider.value / sliderIncrementSize + 0.5)) * sliderIncrementSize
         switch activeAssumption {
-        case 0: currentDCPension!.cashProportion! = NSNumber(Double(assumptionsSlider.value))
+        case 0: currentDCPension!.cashProportion! = NSNumber(value: Double(assumptionsSlider.value))
         case 1: currentDCPension!.initialDrawdownIncome = possibleSliderValues[Int(assumptionsSlider.value / sliderIncrementSize + 0.5)] as NSNumber?
-        case 2: currentDCPension!.incomeInflationaryIncreases = Bool(assumptionsSlider.value)
+        case 2: currentDCPension!.incomeInflationaryIncreases = NSNumber(value: assumptionsSlider.value)
         case 3: currentDCPension!.investmentReturnInDrawdown = Double(assumptionsSlider.value * 0.1) as NSNumber?
         default: break
         }
@@ -232,7 +232,7 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         alert.show()
     }
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
         updateUI()
     }
 }

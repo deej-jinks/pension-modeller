@@ -24,7 +24,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     // finding rows to select for current contributions rates
     var rowForEmployeeContributionRate: Int {
         for i in 0..<GlobalConstants.ContributionRateIncrements.count {
-            if GlobalConstants.ContributionRateIncrements[i] == currentDCPension!.memberContributionRate! {
+            if GlobalConstants.ContributionRateIncrements[i] == Double(currentDCPension!.memberContributionRate!) {
                 return i
             }
         }
@@ -32,7 +32,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
     }
     var rowForEmployerContributionRate: Int {
         for i in 0..<GlobalConstants.ContributionRateIncrements.count {
-            if GlobalConstants.ContributionRateIncrements[i] == currentDCPension!.employerContributionRate! {
+            if GlobalConstants.ContributionRateIncrements[i] == Double(currentDCPension!.employerContributionRate!) {
                 return i
             }
         }
@@ -47,7 +47,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         case 1: return "Please use the controls below to enter your contribution rate (as a percentage of salary), and the rate paid by your employer if relevant."
         case 2: return "Please select the method by which you pay your pension contributions. Double tap on a method to find out more."
         case 3: return "When you pay pension contributions by salary sacrifice, your employer saves on its national insurance bill. Some employers choose to pass some or all of this saving on to employees. Please use the slider below to set the rate of 'NI payover', if relevant."
-        case 4: return "Based on the selected inputs, the effective total contribution rate is around " + createPercentageNumberFormatter().string(from: Double(currentDCPension!.totalContributionRate!))! + ". We will use this figure as a starting point in the modeller, but you can change it later."
+        case 4: return "Based on the selected inputs, the effective total contribution rate is around " + createPercentageNumberFormatter().string(from: currentDCPension!.totalContributionRate!)! + ". We will use this figure as a starting point in the modeller, but you can change it later."
         default: return ""
         }
     }
@@ -203,12 +203,12 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         formatter.minimumFractionDigits = 2
         
         if inputStep >= 2 {
-            grossMonthlyContributionsLabel.text = " " + formatter.string(from: currentDCPension!.monthlyMemberContributions_Gross)! + " "
+            grossMonthlyContributionsLabel.text = " " + formatter.string(from: NSNumber(value: currentDCPension!.monthlyMemberContributions_Gross))! + " "
             if inputStep >= 3 {
-                incomeTaxSavingLabel.text = "(" + formatter.string(from: currentDCPension!.monthlyImmediateTaxRelief)! + ")"
-                niSavingLabel.text = "(" + formatter.string(from: currentDCPension!.monthlyNISaving)! + ")"
-                taxToReclaimLabel.text = "(" + formatter.string(from: currentDCPension!.monthlyTaxReclaim)! + ")"
-                netPensionCostLabel.text = " " + formatter.string(from: currentDCPension!.monthlyNetPensionCost)! + " "
+                incomeTaxSavingLabel.text = "(" + formatter.string(from: NSNumber(value: currentDCPension!.monthlyImmediateTaxRelief))! + ")"
+                niSavingLabel.text = "(" + formatter.string(from: NSNumber(value: currentDCPension!.monthlyNISaving))! + ")"
+                taxToReclaimLabel.text = "(" + formatter.string(from: NSNumber(value: currentDCPension!.monthlyTaxReclaim))! + ")"
+                netPensionCostLabel.text = " " + formatter.string(from: NSNumber(value: currentDCPension!.monthlyNetPensionCost))! + " "
                 
                 if currentDCPension!.niPayoverProportion != nil {
                 niPayoverProportionLabel.text = createPercentageNumberFormatter().string(from: currentDCPension!.niPayoverProportion!)
@@ -216,10 +216,10 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
                     niPayoverProportionLabel.text = "0.0%"
                 }
                 
-                memberContributionsIntoPotLabel.text = " " + formatter.string(from: currentDCPension!.monthlyMemberContributions_Gross)! + " "
-                employerContributionsIntoPotLabel.text = " " + formatter.string(from: currentDCPension!.monthlyEmployerContributions)! + " "
-                niPayoverIntoPotLabel.text = " " + formatter.string(from: currentDCPension!.monthlyNIPayover)! + " "
-                totalIntoPotLabel.text = " " + formatter.string(from: currentDCPension!.totalIntoPot)! + " "
+                memberContributionsIntoPotLabel.text = " " + formatter.string(from: NSNumber(value: currentDCPension!.monthlyMemberContributions_Gross))! + " "
+                employerContributionsIntoPotLabel.text = " " + formatter.string(from: NSNumber(value: currentDCPension!.monthlyEmployerContributions))! + " "
+                niPayoverIntoPotLabel.text = " " + formatter.string(from: NSNumber(value: currentDCPension!.monthlyNIPayover))! + " "
+                totalIntoPotLabel.text = " " + formatter.string(from: NSNumber(value: currentDCPension!.totalIntoPot))! + " "
             }
         } else {
             grossMonthlyContributionsLabel.text = formatter.string(from: 0.0)
@@ -326,7 +326,7 @@ class NewContributionsViewController: UIViewController, UIPickerViewDataSource, 
         let l = UILabel()
         
         let percentFormatter = createPercentageNumberFormatter()
-        l.text = percentFormatter.string(from: pickerData[row])
+        l.text = percentFormatter.string(from: NSNumber(value: pickerData[row]))
         
         l.textAlignment = NSTextAlignment.center
         l.backgroundColor = GlobalConstants.ColorPalette.SecondaryColorDark

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import
+import Charts
 
 class CustomBarChartView: BarChartView {
     //var cornerRadius: CGFloat = 5.0
@@ -39,13 +39,13 @@ class CustomBarChartView: BarChartView {
         self.drawValueAboveBarEnabled = false
         self.drawGridBackgroundEnabled = false
         self.drawBordersEnabled = false
-        self.descriptionText = ""
+        self.chartDescription?.text = ""
         self.legend.enabled = false
         self.drawBarShadowEnabled = false
         
         self.xAxis.enabled = true
         self.xAxis.drawLabelsEnabled = true
-        self.xAxis.labelPosition = .Bottom
+        self.xAxis.labelPosition = .bottom
         self.xAxis.drawLimitLinesBehindDataEnabled = false
         self.xAxis.drawGridLinesEnabled = false
         
@@ -53,14 +53,14 @@ class CustomBarChartView: BarChartView {
         self.leftAxis.drawGridLinesEnabled = false
         self.leftAxis.drawTopYLabelEntryEnabled = true
         //self.leftAxis.enabled = false
-        self.leftAxis.axisMinValue = 0.0
+        self.leftAxis.axisMinimum = 0.0
         
         self.rightAxis.drawLabelsEnabled = false
         self.rightAxis.enabled = false
         self.rightAxis.drawGridLinesEnabled = false
         self.rightAxis.drawAxisLineEnabled = false
         
-        var myFont = UIFont(name: "ArialMT", size: 10.0 * getFontScalingForScreenSize())!
+        let myFont = UIFont(name: "ArialMT", size: 10.0 * getFontScalingForScreenSize())!
         //self.xAxis.setLabelsToSkip(0)
         self.xAxis.labelFont = myFont
         self.legend.font = myFont
@@ -72,40 +72,41 @@ class CustomBarChartView: BarChartView {
 
     func setFundvalueBarChart(labels: [String], values: [Double], maxValue: Double, limitLine: Double) {
         
-        self.leftAxis.axisMaxValue = roundUpForAxisMax(maxValue)
+        self.leftAxis.axisMaximum = roundUpForAxisMax(maxValue)
         
         let formatter = createNumberFormatter(maxValue: maxValue, prefix: "£")
         
         var dataEntries: [BarChartDataEntry] = []
         
         if values.count == 1 {
-            dataEntries.append(BarChartDataEntry(value: 0, xIndex: 0))
-            dataEntries.append(BarChartDataEntry(value: values[0], xIndex: 1))
-            dataEntries.append(BarChartDataEntry(value: 0, xIndex: 2))
+            dataEntries.append(BarChartDataEntry(x: 0, y: 0))
+            dataEntries.append(BarChartDataEntry(x: 1, y: values[0]))
+            dataEntries.append(BarChartDataEntry(x: 2, y: 0))
         } else {
             for i in 0..<values.count {
-                let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
+                let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
                 dataEntries.append(dataEntry)
             }
         }
         
-        let dataSet = BarChartDataSet(yVals: dataEntries, label: "blibble")
+        let dataSet = BarChartDataSet(values: dataEntries, label: "blibble")
         dataSet.drawValuesEnabled = false
+        dataSet.stackLabels = labels
         
-        let chartData = BarChartData(xVals: labels, dataSet: dataSet)
+        let chartData = BarChartData(dataSet: dataSet)
         self.data = chartData
         
         //changes to appearance
         dataSet.colors = [GlobalConstants.ColorPalette.SecondaryColorLight]
-        dataSet.valueFormatter = formatter
+        dataSet.valueFormatter = DefaultValueFormatter(formatter: formatter)
         
         let myFont = UIFont(name: "ArialMT", size: 10.0 * getFontScalingForScreenSize())!
         chartData.setValueFont(myFont)
 
-        self.xAxis.setLabelsToSkip(4)
+        //self.xAxis.setLabelsToSkip(4)
         self.xAxis.labelFont = myFont
         self.leftAxis.enabled = true
-        self.leftAxis.valueFormatter = formatter
+        self.leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
         
         
         let limit = ChartLimitLine(limit: Double(limitLine))
@@ -118,26 +119,27 @@ class CustomBarChartView: BarChartView {
     
     func setAnnuityIncomeBarChart(labels: [String], values: [Double], maxValue: Double, limitLine: Double) {
         
-        self.leftAxis.axisMaxValue = roundUpForAxisMax(maxValue)
+        self.leftAxis.axisMaximum = roundUpForAxisMax(maxValue)
 
         
         var dataEntries: [BarChartDataEntry] = []
         
         if values.count == 1 {
-            dataEntries.append(BarChartDataEntry(value: 0, xIndex: 0))
-            dataEntries.append(BarChartDataEntry(value: values[0], xIndex: 1))
-            dataEntries.append(BarChartDataEntry(value: 0, xIndex: 2))
+            dataEntries.append(BarChartDataEntry(x: 0, y: 0))
+            dataEntries.append(BarChartDataEntry(x: 1, y: values[0]))
+            dataEntries.append(BarChartDataEntry(x: 2, y: 0))
         } else {
             for i in 0..<values.count {
-                let dataEntry = BarChartDataEntry(value: values[i], xIndex: i)
+                let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
                 dataEntries.append(dataEntry)
             }
         }
         
-        let dataSet = BarChartDataSet(yVals: dataEntries, label: "income per year")
+        let dataSet = BarChartDataSet(values: dataEntries, label: "income per year")
         dataSet.drawValuesEnabled = false
+        dataSet.stackLabels = labels
         
-        let chartData = BarChartData(xVals: labels, dataSet: dataSet)
+        let chartData = BarChartData(dataSets: [dataSet])
         self.data = chartData
         
         
@@ -148,23 +150,23 @@ class CustomBarChartView: BarChartView {
         
         let myFont = UIFont(name: "ArialMT", size: 10.0 * getFontScalingForScreenSize())!
         
-        self.xAxis.setLabelsToSkip(4)
+        //self.xAxis.setLabelsToSkip(4)
         self.xAxis.labelFont = myFont
         
         self.leftAxis.enabled = true
-        self.leftAxis.valueFormatter = formatter
+        self.leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
         
         
         let limit = ChartLimitLine(limit: Double(limitLine))
-        limit.lineColor = UIColor.blackColor()
+        limit.lineColor = UIColor.black
         limit.lineDashLengths = [5.0]
         limit.lineWidth = 1.0
         self.xAxis.removeAllLimitLines()
         self.xAxis.addLimitLine(limit)
         
         self.legend.enabled = true
-        self.legend.horizontalAlignment = .Center
-        self.legend.setCustom(colors: [GlobalConstants.ColorPalette.SecondaryColorLight, UIColor.blackColor()], labels: ["income per year", "life expectancy"])
+        self.legend.horizontalAlignment = .center
+        self.legend.setCustom(colors: [GlobalConstants.ColorPalette.SecondaryColorLight, UIColor.black], labels: ["income per year", "life expectancy"])
         //self.legend.setExtra(colors: [UIColor.blackColor()], labels: ["life expectancy"])
         setNeedsDisplay()
     }

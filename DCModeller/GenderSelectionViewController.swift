@@ -44,6 +44,6 @@ class GenderSelectionViewController: UIViewController {
     }
 
     @IBAction func genderSelectionChanged(_ sender: UISegmentedControl) {
-        currentUser!.isMale = sender.selectedSegmentIndex == 0
+        currentUser!.isMale = NSNumber(value: (sender.selectedSegmentIndex == 0))
     }
 }

@@ -39,6 +39,7 @@
 		3793C4411CECD8F800377691 /* CustomBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793C4401CECD8F800377691 /* CustomBarChartView.swift */; };
 		3793C4431CECD9BB00377691 /* FontResizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793C4421CECD9BB00377691 /* FontResizing.swift */; };
 		379908C31CFEF91000C53F5E /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379908C21CFEF91000C53F5E /* NotesViewController.swift */; };
+		37B37BA91DF9DD1B00280F5B /* Pods_F1rstPension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B37BA81DF9DD1B00280F5B /* Pods_F1rstPension.framework */; };
 		37DF321E1CEF83D300B39533 /* AboutYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */; };
 		37DF32231CEF8AEF00B39533 /* DateSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */; };
 		37E3FD3A1D5CE4B2008BA73A /* TaxCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E3FD391D5CE4B2008BA73A /* TaxCalculator.swift */; };
@@ -95,6 +96,7 @@
 		3793C4401CECD8F800377691 /* CustomBarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBarChartView.swift; sourceTree = "<group>"; };
 		3793C4421CECD9BB00377691 /* FontResizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontResizing.swift; sourceTree = "<group>"; };
 		379908C21CFEF91000C53F5E /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		37B37BA81DF9DD1B00280F5B /* Pods_F1rstPension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_F1rstPension.framework; path = "Pods/../build/Debug-iphoneos/Pods_F1rstPension.framework"; sourceTree = "<group>"; };
 		37DF321D1CEF83D300B39533 /* AboutYouViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutYouViewController.swift; sourceTree = "<group>"; };
 		37DF32221CEF8AEF00B39533 /* DateSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectionViewController.swift; sourceTree = "<group>"; };
 		37E3FD391D5CE4B2008BA73A /* TaxCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxCalculator.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37B37BA91DF9DD1B00280F5B /* Pods_F1rstPension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +219,7 @@
 		ACCEEDDE8AC54C4B90B46808 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37B37BA81DF9DD1B00280F5B /* Pods_F1rstPension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -260,7 +264,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Daniel Jinks";
 				TargetAttributes = {
 					372E10031CE8F2EF00D0F65E = {
@@ -428,8 +432,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -474,8 +480,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -494,6 +502,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -503,12 +512,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DF6A7CEE3692B454723FECD0 /* Pods-F1rstPension.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = DCModeller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -523,12 +533,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C376EE06539FB68BD97D5B88 /* Pods-F1rstPension.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Charts",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = DCModeller/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

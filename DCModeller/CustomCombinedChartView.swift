@@ -37,16 +37,16 @@ class CustomCombinedChartView: CombinedChartView {
         self.drawValueAboveBarEnabled = true
         self.drawGridBackgroundEnabled = false
         self.drawBordersEnabled = false
-        self.descriptionText = ""
+        self.chartDescription?.text = ""
         self.legend.enabled = true
-        self.legend.horizontalAlignment = .Center
+        self.legend.horizontalAlignment = .center
         self.legend.maxSizePercent = 100
-        self.legend.setExtra(colors: [UIColor.blackColor()], labels: ["life expectancy"])
+        self.legend.setExtra(colors: [UIColor.black], labels: ["life expectancy"])
         self.drawBarShadowEnabled = false
         
         self.xAxis.enabled = true
         self.xAxis.drawLabelsEnabled = true
-        self.xAxis.labelPosition = .Bottom
+        self.xAxis.labelPosition = .bottom
         self.xAxis.drawLimitLinesBehindDataEnabled = false
         self.xAxis.drawGridLinesEnabled = false
         
@@ -54,16 +54,16 @@ class CustomCombinedChartView: CombinedChartView {
         self.leftAxis.drawGridLinesEnabled = false
         self.leftAxis.drawTopYLabelEntryEnabled = true
         self.leftAxis.enabled = true
-        self.leftAxis.axisMinValue = 0.0
+        self.leftAxis.axisMinimum = 0.0
         
         self.rightAxis.drawLabelsEnabled = true
         self.rightAxis.enabled = true
         self.rightAxis.drawGridLinesEnabled = false
         self.rightAxis.drawAxisLineEnabled = true
-        self.rightAxis.axisMinValue = 0.0
+        self.rightAxis.axisMinimum = 0.0
         
         let myFont = UIFont(name: "ArialMT", size: 10.0 * getFontScalingForScreenSize())!
-        self.xAxis.setLabelsToSkip(4)
+        //self.xAxis.setLabelsToSkip(4)
         self.xAxis.labelFont = myFont
         self.leftAxis.labelFont = myFont
         self.leftAxis.labelTextColor = GlobalConstants.ColorPalette.SecondaryColorLight
@@ -78,44 +78,44 @@ class CustomCombinedChartView: CombinedChartView {
         var yVals2 = [ChartDataEntry]()
         
         for i in 0..<xValues.count {
-            yVals1.append(BarChartDataEntry(value: barValues[i], xIndex: i))
-            yVals2.append(ChartDataEntry(value: lineValues[i], xIndex: i))
+            yVals1.append(BarChartDataEntry(x: Double(i), y: barValues[i]))
+            yVals2.append(ChartDataEntry(x: Double(i), y: lineValues[i]))
         }
         
-        let barDataSet = BarChartDataSet(yVals: yVals1, label: "income per year")
-        barDataSet.valueFormatter = createNumberFormatter(maxValue: maxBarValue, prefix: "£")
+        let barDataSet = BarChartDataSet(values: yVals1, label: "income per year")
+        barDataSet.valueFormatter = DefaultValueFormatter(formatter: createNumberFormatter(maxValue: maxBarValue, prefix: "£"))
         barDataSet.colors = [GlobalConstants.ColorPalette.SecondaryColorLight]
-        barDataSet.axisDependency = .Left
+        barDataSet.axisDependency = .left
         barDataSet.drawValuesEnabled = false
         
         var formatter = createNumberFormatter(maxValue: roundUpForAxisMax(maxBarValue), prefix: "£")
         //formatter.maximumFractionDigits = 0
-        self.leftAxis.valueFormatter = formatter
+        self.leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
         
-        let lineDataSet = LineChartDataSet(yVals: yVals2, label: "fund value")
+        let lineDataSet = LineChartDataSet(values: yVals2, label: "fund value")
 //        lineDataSet.valueFormatter = createPercentageNumberFormatter()
         lineDataSet.colors = [GlobalConstants.ColorPalette.PrimaryColorDark]
         lineDataSet.setCircleColor(GlobalConstants.ColorPalette.PrimaryColorDark)
         lineDataSet.circleRadius = 1.5
-        lineDataSet.axisDependency = .Right
+        lineDataSet.axisDependency = .right
         lineDataSet.drawValuesEnabled = false
         
         formatter = createNumberFormatter(maxValue: roundUpForAxisMax(maxLineValue), prefix: "£")
         //formatter.maximumFractionDigits = 0
-        self.rightAxis.valueFormatter = formatter
+        self.rightAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
 
         
-        let chartData = CombinedChartData(xVals: xValues)
+        //let chartData = CombinedChartData(xVals: xValues)
         
-        chartData.barData = BarChartData(xVals: xValues, dataSets: [barDataSet])
-        chartData.lineData = LineChartData(xVals: xValues, dataSets: [lineDataSet])
-        
-        self.leftAxis.axisMaxValue = roundUpForAxisMax(maxBarValue)
-        self.rightAxis.axisMaxValue = roundUpForAxisMax(maxLineValue)
+        //let barData = BarChartData(xVals: xValues, dataSets: [barDataSet])
+        //let lineData = LineChartData(xVals: xValues, dataSets: [lineDataSet])
+        let chartData = CombinedChartData(dataSets: [barDataSet,lineDataSet])
+        self.leftAxis.axisMaximum = roundUpForAxisMax(maxBarValue)
+        self.rightAxis.axisMaximum = roundUpForAxisMax(maxLineValue)
 
         self.xAxis.removeAllLimitLines()
         let limit = ChartLimitLine(limit: verticalLimit)
-        limit.lineColor = UIColor.blackColor()
+        limit.lineColor = UIColor.black
         limit.lineWidth = 1.0
         limit.lineDashLengths = [5.0]
         self.xAxis.addLimitLine(limit)

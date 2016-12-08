@@ -65,7 +65,7 @@ class CashOutViewController: UIViewController {
     
     func initialiseUI() {
         if currentDCPension!.selectedRetirementAge == nil {
-            currentDCPension!.selectedRetirementAge = max(65,currentUser!.ageNearest)
+            currentDCPension!.selectedRetirementAge = NSNumber(value: max(65,currentUser!.ageNearest))
         } else if Int(currentDCPension!.selectedRetirementAge!) < currentUser!.ageNearest {
             currentDCPension!.selectedRetirementAge = currentUser!.ageNearest as NSNumber?
         }
