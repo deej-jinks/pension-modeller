@@ -110,9 +110,9 @@ class AnnuityViewController: UIViewController, ChartViewDelegate {
         cashTakenLabel.text = " Cash Lump Sum : " + formatter.string(from: NSNumber(value: currentDCPension!.cashAmount))! + "      "
         
         formatter = createNumberFormatter(maxValue: 100, prefix: "£")
-        
+        //let hs = incomeChartView.hi
         if let highlight = incomeChartView.highlighted.first {
-            let highlightedAge = min(100,highlight.x + Double(currentDCPension!.selectedRetirementAge!))
+            let highlightedAge = Int(min(100,highlight.x))
             incomeLabel.text = " Income at \(highlightedAge) : " + formatter.string(from: NSNumber(value: dataFinder.getAnnuityIncome()![Int(highlightedAge) - Int(currentDCPension!.selectedRetirementAge!)]))! + " pa     "
         } else {
             incomeLabel.text = " Income at \(Int(currentDCPension!.selectedRetirementAge!)) : " + formatter.string(from: NSNumber(value: dataFinder.getAnnuityIncome()!.first!))! + " pa     "
@@ -191,7 +191,11 @@ class AnnuityViewController: UIViewController, ChartViewDelegate {
         alert.show()
     }
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        updateUI()
+    }
+    
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
         updateUI()
     }
 }

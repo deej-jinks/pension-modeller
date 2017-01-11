@@ -84,7 +84,7 @@ class CustomBarChartView: BarChartView {
             dataEntries.append(BarChartDataEntry(x: 2, y: 0))
         } else {
             for i in 0..<values.count {
-                let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
+                let dataEntry = BarChartDataEntry(x: Double(labels[i])!, y: values[i])
                 dataEntries.append(dataEntry)
             }
         }
@@ -92,6 +92,7 @@ class CustomBarChartView: BarChartView {
         let dataSet = BarChartDataSet(values: dataEntries, label: "blibble")
         dataSet.drawValuesEnabled = false
         dataSet.stackLabels = labels
+        
         
         let chartData = BarChartData(dataSet: dataSet)
         self.data = chartData
@@ -130,7 +131,7 @@ class CustomBarChartView: BarChartView {
             dataEntries.append(BarChartDataEntry(x: 2, y: 0))
         } else {
             for i in 0..<values.count {
-                let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
+                let dataEntry = BarChartDataEntry(x: Double(labels[i])!, y: values[i])
                 dataEntries.append(dataEntry)
             }
         }
