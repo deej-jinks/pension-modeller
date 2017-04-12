@@ -86,6 +86,14 @@ class DCPension: NSManagedObject {
         return ages
     }
     
+    var agesFromRetirementAge: [Double] {
+        var ages: [Double] = []
+        for i in Int(selectedRetirementAge!)...100 {
+            ages.append(Double(i))
+        }
+        return ages
+    }
+    
     var cashAmount: Double {
         return Double(cashProportion!) * fundValueAtRetirement
     }

@@ -142,8 +142,8 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         formatter = createNumberFormatter(maxValue: currentDCPension!.drawdownFundValuesAndIncome.incomes.first!, prefix: "£")
         
         if let highlight = drawdownChartView.highlighted.first {
-            let highlightedAge = min(100,highlight.x + Double(currentDCPension!.selectedRetirementAge!))
-            incomeLabel.text = " Income at \(highlightedAge) : " + formatter.string(from: NSNumber(value: currentDCPension!.drawdownFundValuesAndIncome.incomes[Int(highlightedAge) - Int(currentDCPension!.selectedRetirementAge!)]))! + " pa     "
+            let highlightedAge = max(min(100,highlight.x),Double(currentDCPension!.selectedRetirementAge!))
+            incomeLabel.text = " Income at \(Int(highlightedAge)) : " + formatter.string(from: NSNumber(value: currentDCPension!.drawdownFundValuesAndIncome.incomes[Int(highlightedAge) - Int(currentDCPension!.selectedRetirementAge!)]))! + " pa     "
         } else {
             incomeLabel.text = " Income at \(Int(currentDCPension!.selectedRetirementAge!)) : " + formatter.string(from: currentDCPension!.initialDrawdownIncome!)! + " pa     "
         }
@@ -165,8 +165,8 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
     
     func drawGraph() {
         let incomesAndFVs = currentDCPension!.drawdownFundValuesAndIncome
-        
-        drawdownChartView.setCombinedChart(currentDCPension!.agesFromRetirementAgeAsStrings, barValues: incomesAndFVs.incomes, lineValues: incomesAndFVs.fundValues, barValueUnit: "£", lineValueUnit: "£", maxBarValue: incomesAndFVs.incomes.first!, maxLineValue: incomesAndFVs.fundValues.first!, verticalLimit: dataFinder.getLifeExpectancyFromRetirement()!)
+        //print("ages: \(currentDCPension!.agesFromRetirementAgeAsStrings)")
+        drawdownChartView.setCombinedChart(xValues: currentDCPension!.agesFromRetirementAge, barValues: incomesAndFVs.incomes, lineValues: incomesAndFVs.fundValues, barValueUnit: "£", lineValueUnit: "£", maxBarValue: incomesAndFVs.incomes.first!, maxLineValue: incomesAndFVs.fundValues.first!, verticalLimit: dataFinder.getLifeExpectancyFromRetirement()!)
     }
     
     @IBAction func assumptionsSliderValueChanged(_ sender: AnyObject) {
@@ -232,7 +232,8 @@ class DrawdownViewController: UIViewController, ChartViewDelegate {
         alert.show()
     }
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         updateUI()
     }
+    
 }

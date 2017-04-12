@@ -112,7 +112,7 @@ class AnnuityViewController: UIViewController, ChartViewDelegate {
         formatter = createNumberFormatter(maxValue: 100, prefix: "£")
         //let hs = incomeChartView.hi
         if let highlight = incomeChartView.highlighted.first {
-            let highlightedAge = Int(min(100,highlight.x))
+            let highlightedAge = Int(max(Double(currentDCPension!.selectedRetirementAge!),min(100,highlight.x)))
             incomeLabel.text = " Income at \(highlightedAge) : " + formatter.string(from: NSNumber(value: dataFinder.getAnnuityIncome()![Int(highlightedAge) - Int(currentDCPension!.selectedRetirementAge!)]))! + " pa     "
         } else {
             incomeLabel.text = " Income at \(Int(currentDCPension!.selectedRetirementAge!)) : " + formatter.string(from: NSNumber(value: dataFinder.getAnnuityIncome()!.first!))! + " pa     "

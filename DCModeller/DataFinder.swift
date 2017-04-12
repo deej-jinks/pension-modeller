@@ -13,7 +13,7 @@ class DataFinder {
     
     func getLifeExpectancyFromRetirement() -> Double? {
         if let set = getAnnuitySet() {
-            return Double(set.lifeExpectancyFromRetirement!)
+            return Double(set.lifeExpectancyFromRetirement!) + Double(currentDCPension!.selectedRetirementAge!)
         } else {
             return nil
         }

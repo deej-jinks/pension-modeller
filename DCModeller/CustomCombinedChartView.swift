@@ -72,16 +72,16 @@ class CustomCombinedChartView: CombinedChartView {
     }
     
     
-    func setCombinedChart(_ xValues: [String], barValues: [Double], lineValues: [Double], barValueUnit: String, lineValueUnit: String, maxBarValue: Double, maxLineValue: Double, verticalLimit: Double) -> Void {
+    func setCombinedChart(xValues: [Double], barValues: [Double], lineValues: [Double], barValueUnit: String, lineValueUnit: String, maxBarValue: Double, maxLineValue: Double, verticalLimit: Double) -> Void {
         
         var yVals1 = [BarChartDataEntry]()
         var yVals2 = [ChartDataEntry]()
         
         for i in 0..<xValues.count {
-            yVals1.append(BarChartDataEntry(x: Double(i), y: barValues[i]))
-            yVals2.append(ChartDataEntry(x: Double(i), y: lineValues[i]))
+            yVals1.append(BarChartDataEntry(x: xValues[i], y: barValues[i]))
+            yVals2.append(ChartDataEntry(x: xValues[i], y: lineValues[i]))
         }
-        
+
         let barDataSet = BarChartDataSet(values: yVals1, label: "income per year")
         barDataSet.valueFormatter = DefaultValueFormatter(formatter: createNumberFormatter(maxValue: maxBarValue, prefix: "£"))
         barDataSet.colors = [GlobalConstants.ColorPalette.SecondaryColorLight]
@@ -89,11 +89,9 @@ class CustomCombinedChartView: CombinedChartView {
         barDataSet.drawValuesEnabled = false
         
         var formatter = createNumberFormatter(maxValue: roundUpForAxisMax(maxBarValue), prefix: "£")
-        //formatter.maximumFractionDigits = 0
         self.leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
         
         let lineDataSet = LineChartDataSet(values: yVals2, label: "fund value")
-//        lineDataSet.valueFormatter = createPercentageNumberFormatter()
         lineDataSet.colors = [GlobalConstants.ColorPalette.PrimaryColorDark]
         lineDataSet.setCircleColor(GlobalConstants.ColorPalette.PrimaryColorDark)
         lineDataSet.circleRadius = 1.5
@@ -101,15 +99,12 @@ class CustomCombinedChartView: CombinedChartView {
         lineDataSet.drawValuesEnabled = false
         
         formatter = createNumberFormatter(maxValue: roundUpForAxisMax(maxLineValue), prefix: "£")
-        //formatter.maximumFractionDigits = 0
         self.rightAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
 
+        let chartData = CombinedChartData()
+        chartData.barData = BarChartData(dataSets: [barDataSet])
+        chartData.lineData = LineChartData(dataSets: [lineDataSet])
         
-        //let chartData = CombinedChartData(xVals: xValues)
-        
-        //let barData = BarChartData(xVals: xValues, dataSets: [barDataSet])
-        //let lineData = LineChartData(xVals: xValues, dataSets: [lineDataSet])
-        let chartData = CombinedChartData(dataSets: [barDataSet,lineDataSet])
         self.leftAxis.axisMaximum = roundUpForAxisMax(maxBarValue)
         self.rightAxis.axisMaximum = roundUpForAxisMax(maxLineValue)
 
