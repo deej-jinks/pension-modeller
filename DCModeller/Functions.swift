@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Charts
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -31,6 +32,16 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
+public func getFivesFormatter() -> IAxisValueFormatter {
+    let formatter = DefaultAxisValueFormatter { (value, axisBase) -> String in
+        if Int(value) % 5 == 0 {
+            return "\(Int(value))"
+        } else {
+            return ""
+        }
+    }
+    return formatter
+}
 
 public func createPercentageNumberFormatter() -> (NumberFormatter) {
     let myNSNumberFormatter = NumberFormatter()

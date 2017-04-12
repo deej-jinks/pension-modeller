@@ -114,6 +114,8 @@ class CustomCombinedChartView: CombinedChartView {
         limit.lineWidth = 1.0
         limit.lineDashLengths = [5.0]
         self.xAxis.addLimitLine(limit)
+        self.xAxis.labelCount = xValues.count
+        self.xAxis.valueFormatter = getFivesFormatter()
         
         self.data = chartData
         

@@ -115,6 +115,9 @@ class CustomBarChartView: BarChartView {
         limit.lineDashLengths = [5.0]
         self.xAxis.removeAllLimitLines()
         self.xAxis.addLimitLine(limit)
+        self.xAxis.labelCount = labels.count
+        self.xAxis.valueFormatter = getFivesFormatter()
+        
         setNeedsDisplay()
     }
     
@@ -164,6 +167,8 @@ class CustomBarChartView: BarChartView {
         limit.lineWidth = 1.0
         self.xAxis.removeAllLimitLines()
         self.xAxis.addLimitLine(limit)
+        self.xAxis.labelCount = labels.count
+        self.xAxis.valueFormatter = getFivesFormatter()
         
         self.legend.enabled = true
         self.legend.horizontalAlignment = .center

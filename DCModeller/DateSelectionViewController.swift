@@ -69,10 +69,11 @@ class DateSelectionViewController: UIViewController, UIPickerViewDataSource, UIP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let earliestYear = (Calendar.current as NSCalendar).component(.year, from: Date(timeIntervalSinceNow: 0)) - 74
         let dayArray = [Int](1...31)
         let monthArray = [Int](1...12)
-        let yearArray = [Int](1942...2000)
+        let yearArray = [Int](earliestYear...2000)
         
         pickerData = [
             dayArray,
